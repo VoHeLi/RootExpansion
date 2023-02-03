@@ -27,5 +27,12 @@ public class Player : MonoBehaviour
         {
             yield return null;
         }
+
+
+    }
+
+    public void SetAction(Action action)
+    {
+        this.action = action;
     }
 }

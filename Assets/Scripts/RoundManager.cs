@@ -14,7 +14,7 @@ public class RoundManager : MonoBehaviour
     private Player[] players;
 
 
-    private Player currentPlayer;
+    public Player currentPlayer;
 
     void Awake()
     {

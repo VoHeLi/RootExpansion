@@ -6,10 +6,18 @@ public class Action
 {
     public enum ActionType
     {
-        Pass
+        Pass,
+        Plant,
+        Arroser,
+        Attack
     };
 
 
     public ActionType actionType;
-    public CaseInfo ActionTile;
+    public CaseInfo actionTile;
+
+    public Action(ActionType action)
+    {
+        actionType = action;
+    }
 }
