@@ -12,24 +12,20 @@ public class Player : MonoBehaviour
     private string playerName = "Plantar";
     private Color playerColor = Color.white;
 
-    void Start()
-    {
-        
-    }
+    private Action action = null;
 
-    
-    void Update()
-    {
-        
-    }
 
-    public void StartTurn()
+    public IEnumerator StartTurn()
     {
         //Ressources
         foreach(Structure structure in playerStructures){
             structure.ProduceRessource(this);
         }
 
-        //
+        //Wait for action
+        while(action == null)
+        {
+            yield return null;
+        }
     }
 }
