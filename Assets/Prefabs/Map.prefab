@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefabs:
   - {fileID: 3641433491633284447, guid: 174a9582cac361340bb1834f38564d49, type: 3}
+  - {fileID: 3641433491633284447, guid: 5cf7c528664de9e47ba1a612c1a5e1b8, type: 3}
   offset: {x: 0, y: 0, z: 0}
-  width: 10
-  height: 10
+  width: 40
+  height: 40
   space: 2
