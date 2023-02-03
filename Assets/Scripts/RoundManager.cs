@@ -14,7 +14,7 @@ public class RoundManager : MonoBehaviour
     private Player[] players;
 
 
-    private Player currentPlayer;
+    public Player currentPlayer;
 
     void Awake()
     {
@@ -39,7 +39,8 @@ public class RoundManager : MonoBehaviour
         {
             foreach(Player player in players)
             {
-                player.StartTurn();
+                currentPlayer = player;
+                yield return player.StartTurn();
             }
         }
     }
