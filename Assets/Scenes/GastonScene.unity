@@ -542,6 +542,14 @@ PrefabInstance:
       propertyPath: space
       value: 2.05
       objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: width
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: height
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -643,5 +651,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+      propertyPath: selectedOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
