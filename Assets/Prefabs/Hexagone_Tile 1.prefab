@@ -4973,3 +4973,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.1
   frequency: 0.5
+  vecteurdonde: 0.1
