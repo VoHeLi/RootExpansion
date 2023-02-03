@@ -15,12 +15,8 @@ public class CaseInfo : MonoBehaviour
 
     public void SetOutline(Material material)
     {
-        Debug.Log(meshRenderer.ToString());
-
         Material[] mats = meshRenderer.sharedMaterials;
         mats[1] = material;
         meshRenderer.materials = mats;
-
-        //meshRenderer.sharedMaterials[1] = material;
     }
 }
