@@ -39,9 +39,10 @@ public class MapBase : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                tilesObject[i, j] = Instantiate(tilePrefabs[0]);
+                tilesObject[i, j] = Instantiate(tilePrefabs[(int)tiles[i,j]]);
                 tilesObject[i, j].transform.position = offset + new Vector3(i*space + space/2*(j%2), 0, j * space * 5.0f/6.0f);
                 tilesObject[i, j].transform.parent = transform;
+                tilesObject[i, j].GetComponent<CaseInfo>().casePos = new Vector2Int(i, j);
             }
         }
     }
