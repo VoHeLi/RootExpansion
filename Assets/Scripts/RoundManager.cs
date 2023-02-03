@@ -39,6 +39,7 @@ public class RoundManager : MonoBehaviour
         {
             foreach(Player player in players)
             {
+                currentPlayer = player;
                 yield return player.StartTurn();
             }
         }

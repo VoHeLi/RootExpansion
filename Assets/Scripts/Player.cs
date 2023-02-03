@@ -25,10 +25,12 @@ public class Player : MonoBehaviour
         //Wait for action
         while(action == null)
         {
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
 
+        Debug.Log(action.actionType + " : " + action.actionTile.casePos);
 
+        action = null;
     }
 
     public void SetAction(Action action)
