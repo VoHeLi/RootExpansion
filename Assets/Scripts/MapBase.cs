@@ -163,7 +163,7 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    private List<Vector2Int> GetNeighbours(Vector2Int position)
+    public List<Vector2Int> GetNeighbours(Vector2Int position)
     {
         List<Vector2Int> neightbours = new List<Vector2Int>();
         neightbours.Add(position + Vector2Int.left);

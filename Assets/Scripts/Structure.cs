@@ -11,6 +11,7 @@ public abstract class Structure : MonoBehaviour
     public int[] productionStats;
     public int[] pvStats;
     public int[] dommageStats;
+    public int attackRange;
 
     public abstract void ProduceRessource(Player player); 
     public void Arroser(Player player)
