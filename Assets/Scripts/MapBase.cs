@@ -238,7 +238,14 @@ public class MapBase : MonoBehaviour
                 {
                     if(tiles[neighbour.x, neighbour.y] == TileType.Grass)
                     {
-                        queue.Enqueue(new TileNode(node, neighbour, node.length+1));
+                        if (structures[node.position.x, node.position.y] != null) {
+                            if(structures[node.position.x, node.position.y].player == roundManager.currentPlayer || structures[node.position.x, node.position.y].type == StructureType.Racine)
+                            {
+                                queue.Enqueue(new TileNode(node, neighbour, node.length + 1));
+                            }
+                        }
+
+                        else queue.Enqueue(new TileNode(node, neighbour, node.length+1));
                     }
                 }
             }

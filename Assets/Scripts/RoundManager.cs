@@ -7,11 +7,13 @@ public class RoundManager : MonoBehaviour
 {
 
     [SerializeField] private int playerCount;
+    [SerializeField] public int actionCount = 3;
     [SerializeField] private Vector2Int[] playerPos;
     [SerializeField] private Vector2Int[] playerNames;
     [SerializeField] private Vector2Int[] playerColor;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private MapBase map;
+    [SerializeField] private GameObject[] cameras;
 
     public Player[] players;
 
@@ -45,13 +47,33 @@ public class RoundManager : MonoBehaviour
     {
         while (true)
         {
-            foreach (Player player in players)
+            for (int k = 0; k < players.Length; k++)
             {
+                cameras[k].SetActive(true);
+                Player player = players[k];
+
                 currentPlayer = player;
-                turnCount.text = "Tour " + nbTurn.ToString() + " | " + currentPlayer.getName();
-                yield return player.StartTurn();
+
+                for(int i = 0; i < actionCount; i++)
+                {
+                    turnCount.text = "Tour " + nbTurn.ToString() + " | Action " + (i+1).ToString() + " | " + currentPlayer.getName();
+                    yield return player.StartTurn();
+
+                    if (currentPlayer.endTurn)
+                    {
+                        currentPlayer.endTurn = false;
+                        break;
+                    }
+                }
+                cameras[k].SetActive(false);
             }
             nbTurn++;
         }
+    }
+
+
+    public void EndTurn()
+    {
+        currentPlayer.endTurn = true;
     }
 }

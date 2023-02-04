@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCount: 2
+  actionCount: 3
   playerPos:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
@@ -56,4 +57,10 @@ MonoBehaviour:
   - {x: 0, y: 0}
   playerPrefab: {fileID: 2646253945146811293, guid: bf3c522f6acdab6479ad86288c24b18f, type: 3}
   map: {fileID: 0}
+  cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  players: []
+  waterCount: {fileID: 0}
+  turnCount: {fileID: 0}
   currentPlayer: {fileID: 0}
