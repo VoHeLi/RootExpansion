@@ -41,10 +41,13 @@ public class CaseInfo : MonoBehaviour
                     // la case doit etre a une distance de la case
                     if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) <= plantRootRadius)
                     {
-                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null && (map.structures[casePos.x + iOffset, casePos.y + jOffset].player == map.roundManager.currentPlayer))
-                        {
-                            plantCount++;
-                        }
+                        //if (pathLength(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset), plantRootRadius) <= plantRootRadius)
+                        //{
+                            if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null && (map.structures[casePos.x + iOffset, casePos.y + jOffset].type != MapBase.StructureType.Racine) && (map.structures[casePos.x + iOffset, casePos.y + jOffset].player == map.roundManager.currentPlayer))
+                            {
+                                plantCount++;
+                            }
+                        //}
                     }
                 }
             }
@@ -136,7 +139,7 @@ public class CaseInfo : MonoBehaviour
 
         return neightbours;
     }
-    int pathLength(Vector2Int position)
+    public int pathLength(Vector2Int position, int radiusMax)
     {
         int pathLength = 0; 
         bool[,] traveled = new bool[map.width, map.height];
@@ -149,9 +152,9 @@ public class CaseInfo : MonoBehaviour
         {
             node = (TileNode)queue.Dequeue();
 
-            if (node.length > 10)
+            if (node.length > radiusMax)
             {
-                return 10;
+                return radiusMax;
             }
 
             if (map.structures[node.position.x, node.position.y] != null && map.structures[node.position.x, node.position.y].type != MapBase.StructureType.Racine)
@@ -178,8 +181,9 @@ public class CaseInfo : MonoBehaviour
 
         }
 
-        if (node == null) return 10;
+        if (node == null) return radiusMax;
         node = node.parent;
+        if (node == null) return radiusMax;
         while (node.parent != null)
         {
             pathLength++;

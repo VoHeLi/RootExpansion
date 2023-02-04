@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MapBase : MonoBehaviour
+public class MainBase : MonoBehaviour
 {
     // Start is called before the first frame update
     public void PlayGame()

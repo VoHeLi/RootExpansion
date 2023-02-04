@@ -45,13 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc81975a4d90d4f49a7dd63025029aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   position: {x: 0, y: 0}
-  joueurId: 0
+  player: {fileID: 0}
   niveau: 0
   productionStats: 
   pvStats: 
   dommageStats: 
-  plantRootRadius: 0
+  attackRange: 0
 --- !u!1001 &4864541348879438764
 PrefabInstance:
   m_ObjectHideFlags: 0
