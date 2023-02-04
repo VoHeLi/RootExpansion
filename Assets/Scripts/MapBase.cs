@@ -65,6 +65,9 @@ public class MapBase : MonoBehaviour
                 tilesInfos[i, j].map = this;
             }
         }
+
+
+        ReplaceStructure(Vector2Int.zero);
     }
 
     private Vector3 GetRealPosition(Vector2Int position)
