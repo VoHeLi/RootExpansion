@@ -24,6 +24,20 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCaseUsable(MapBase.StructureType planteID, Action.ActionType actionType)
     {
+        switch (actionType)
+        {
+            case Action.ActionType.PlantCactus:
+            case Action.ActionType.PlantCarnivore:
+            case Action.ActionType.PlantLierre:
+            case Action.ActionType.PlantPousse:
+            case Action.ActionType.PlantTournesol:
+                return IsCasePlantable(planteID);
+            case Action.ActionType.Arroser:
+                return isCaseArrosable();
+            case Action.ActionType.Attack:
+                return true; // isCaseAttackable();
+
+        }
         return IsCasePlantable(planteID);
     }
 
@@ -70,11 +84,11 @@ public class CaseInfo : MonoBehaviour
         return true;
     }
 
-    public bool isCaseArrosable(int water)
+    public bool isCaseArrosable()
     {
         Structure selectedPlant = map.structures[casePos.x, casePos.y];
-
-        if(selectedPlant == null) { return false;}
+        int water = map.roundManager.currentPlayer.ressources[0];
+        if (selectedPlant == null) { return false;}
         if(selectedPlant.niveau >= 3 ) { return false;}
         if (Mathf.Pow(2, selectedPlant.niveau + 1) > water) { return false;}
         return true;
@@ -82,8 +96,27 @@ public class CaseInfo : MonoBehaviour
 
     public bool isCaseAttackable(Structure attackingPlant) 
     {
-        if (GetTileDistance(attackingPlant.position) > attackingPlant.attackRange) { return false; }
-        return true; 
+        int attackRange = map.structures[casePos.x, casePos.y].attackRange;
+        int plantCount = 0;
+        for (int iOffset = attackRange * -2; iOffset < attackRange * 2; iOffset++)
+        {
+            for (int jOffset = attackRange * -2; jOffset < attackRange * 2; jOffset++)
+            {
+                if ((casePos.x + iOffset >= 0) && (casePos.x + iOffset < map.height) && (casePos.y + jOffset >= 0) && (casePos.y + jOffset < map.width))
+                {
+                    // la case doit etre a une distance de la case
+                    if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) <= attackRange)
+                    {
+                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null && (map.structures[casePos.x + iOffset, casePos.y + jOffset].type != MapBase.StructureType.Racine) && (map.structures[casePos.x + iOffset, casePos.y + jOffset].player == map.roundManager.currentPlayer))
+                        {
+                            plantCount++;
+                        }
+
+                    }
+                }
+            }
+        }
+        return plantCount>0; 
     }
 
     int GetTileDistance(Vector2Int case2Pos)

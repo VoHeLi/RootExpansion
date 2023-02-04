@@ -16,12 +16,42 @@ public class Lierre : Structure
         throw new System.NotImplementedException();
     }
 
+
     public override void Action(Player player)
     {
-        throw new System.NotImplementedException();
+        List<Structure> Attackable = new();
+
+        for (int iOffset = attackRange * -2; iOffset < attackRange * 2; iOffset++)
+        {
+            for (int jOffset = attackRange * -2; jOffset < attackRange * 2; jOffset++)
+            {
+                if ((position.x + iOffset >= 0) && (position.x + iOffset < map.height) && (position.y + jOffset >= 0) && (position.y + jOffset < map.width))
+                {
+                    // la case doit etre a une distance de la case
+                    if (GetTileDistance(new Vector2Int(position.x + iOffset, position.y + jOffset)) <= attackRange)
+                    {
+                        if (map.structures[position.x + iOffset, position.y + jOffset] != null
+                            && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
+                            && (map.structures[position.x + iOffset, position.y + jOffset].player == map.roundManager.currentPlayer))
+                        {
+                            Attackable.Add(map.structures[position.x + iOffset, position.y + jOffset]);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        List<Structure> Attacked = new();
+        for (int i = 0; i < 1; i++)
+        {
+            Structure plant = findClosest(Attackable);
+            Attacked.Add(plant);
+            Attackable.Remove(plant);
+        }
+
+        /// MTN JUSTE A FAIRE DES DEGATS AUX PLANTES DANS ATTACKED
     }
-
-
 
     // Start is called before the first frame update
     void Start()
