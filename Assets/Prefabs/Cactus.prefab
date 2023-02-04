@@ -54,7 +54,7 @@ MonoBehaviour:
   dommageStats: 05000000050000000a0000000a0000000f000000
   attackRange: 4
   lifeText: {fileID: 8728500873309512314}
-  levelText: {fileID: 0}
+  levelText: {fileID: 6284430881068846569}
   lifeBar: {fileID: 3565408284856410569}
 --- !u!1001 &506946980579785215
 PrefabInstance:
@@ -257,6 +257,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3036952178430166522, guid: e362d7e75b2b8b34cb835baf5941e6b0, type: 3}
   m_PrefabInstance: {fileID: 1972493192707449907}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6284430881068846569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5506068962870208986, guid: e362d7e75b2b8b34cb835baf5941e6b0, type: 3}
+  m_PrefabInstance: {fileID: 1972493192707449907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7411429517868303430 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9044666189939646581, guid: e362d7e75b2b8b34cb835baf5941e6b0, type: 3}
