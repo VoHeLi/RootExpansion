@@ -7,6 +7,9 @@ public class CamMovement : MonoBehaviour
 {
     public PlayerInput input;
     public float speed = 10;
+
+    public Camera cam;
+    public float scrollingSpeed = 200;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,17 @@ public class CamMovement : MonoBehaviour
     void Update()
     {
         Vector2 inputVector = input.actions["Move"].ReadValue<Vector2>() * speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x + inputVector.x, transform.position.y, transform.position.z + inputVector.y);
+        transform.position += new Vector3(inputVector.x , 0, inputVector.y);
+
+        float yScrolling = input.actions["Zoom"].ReadValue<float>() * speed * Time.deltaTime;
+        cam.fieldOfView += yScrolling * scrollingSpeed * Time.deltaTime * -1;
+        if(cam.fieldOfView<5)
+        {
+            cam.fieldOfView = 5f;
+        }else if(cam.fieldOfView > 80)
+        {
+            cam.fieldOfView = 80;
+        }
 
     }
 }
