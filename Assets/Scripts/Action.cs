@@ -7,11 +7,14 @@ public class Action
     public enum ActionType
     {
         Pass,
-        Plant,
+        PlantPousse,
         Arroser,
-        Attack
+        Attack,
+        PlantTournesol,
+        PlantCarnivore,
+        PlantLierre,
+        PlantCactus
     };
-
 
     public ActionType actionType;
     public CaseInfo actionTile;
@@ -25,8 +28,20 @@ public class Action
     {
         switch (actionType)
         {
-            case ActionType.Plant:
-                map.ReplaceStructureTemp(actionTile.casePos);
+            case ActionType.PlantPousse:
+                map.ReplaceStructureTemp(actionTile.casePos, MapBase.StructureType.Pousse);
+                break;
+            case ActionType.PlantCactus:
+                map.ReplaceStructureTemp(actionTile.casePos, MapBase.StructureType.Cactus);
+                break;
+            case ActionType.PlantCarnivore:
+                map.ReplaceStructureTemp(actionTile.casePos, MapBase.StructureType.Carnivore);
+                break;
+            case ActionType.PlantLierre:
+                map.ReplaceStructureTemp(actionTile.casePos, MapBase.StructureType.Lierre);
+                break;
+            case ActionType.PlantTournesol:
+                map.ReplaceStructureTemp(actionTile.casePos, MapBase.StructureType.Tournesol);
                 break;
         }
        
@@ -36,8 +51,20 @@ public class Action
     {
         switch (actionType)
         {
-            case ActionType.Plant:
-                map.ReplaceStructure(actionTile.casePos, 0);
+            case ActionType.PlantPousse:
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Pousse);
+                break;
+            case ActionType.PlantCactus:
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Cactus);
+                break;
+            case ActionType.PlantCarnivore:
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Carnivore);
+                break;
+            case ActionType.PlantLierre:
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Lierre);
+                break;
+            case ActionType.PlantTournesol:
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Tournesol);
                 break;
         }
     }

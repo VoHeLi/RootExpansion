@@ -111,7 +111,26 @@ public class TileSelector : MonoBehaviour
     public void BeginPlantAction()
     {
         map.ResetTempStructure();
-        pendingAction = new Action(Action.ActionType.Plant);
+        pendingAction = null;
+
+        switch (planteID)
+        {
+            case MapBase.StructureType.Cactus:
+                pendingAction = new Action(Action.ActionType.PlantCactus);
+                break;
+            case MapBase.StructureType.Carnivore:
+                pendingAction = new Action(Action.ActionType.PlantCarnivore);
+                break;
+            case MapBase.StructureType.Lierre:
+                pendingAction = new Action(Action.ActionType.PlantLierre);
+                break;
+            case MapBase.StructureType.Pousse:
+                pendingAction = new Action(Action.ActionType.PlantPousse);
+                break;
+            case MapBase.StructureType.Tournesol:
+                pendingAction = new Action(Action.ActionType.PlantTournesol);
+                break;
+        }
 
         List<CaseInfo> possible = new List<CaseInfo>();
         List<CaseInfo> notPossible = new List<CaseInfo>();
