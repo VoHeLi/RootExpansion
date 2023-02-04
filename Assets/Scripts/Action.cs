@@ -21,6 +21,17 @@ public class Action
         actionType = action;
     }
 
+    public void Previsualize(MapBase map)
+    {
+        switch (actionType)
+        {
+            case ActionType.Plant:
+                map.ReplaceStructureTemp(actionTile.casePos);
+                break;
+        }
+       
+    }
+
     public void Execute(MapBase map)
     {
         switch (actionType)
