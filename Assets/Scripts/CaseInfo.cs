@@ -32,13 +32,10 @@ public class CaseInfo : MonoBehaviour
             case Action.ActionType.PlantPousse:
             case Action.ActionType.PlantTournesol:
                 return IsCasePlantable(planteID);
-                break;
             case Action.ActionType.Arroser:
                 return isCaseArrosable();
-                break;
             case Action.ActionType.Attack:
-                return true;// isCaseAttackable();
-                break;
+                return true; // isCaseAttackable();
 
         }
         return IsCasePlantable(planteID);
