@@ -10,7 +10,7 @@ public class MapBase : MonoBehaviour
     [SerializeField] public int width;
     [SerializeField] public int height;
     [SerializeField] private float space;
-
+    [SerializeField] public RoundManager roundManager;
 
     private float noiseSpacing = 5f;
 
@@ -77,7 +77,8 @@ public class MapBase : MonoBehaviour
         }
 
 
-        ReplaceStructure(Vector2Int.zero, StructureType.Pousse);
+        ReplaceStructure(Vector2Int.zero, StructureType.Pousse, roundManager.players[0]);
+        ReplaceStructure(Vector2Int.right * 10, StructureType.Pousse, roundManager.players[1]);
     }
 
     private Vector3 GetRealPosition(Vector2Int position)
@@ -85,7 +86,7 @@ public class MapBase : MonoBehaviour
         return tilesObject[position.x, position.y].transform.position;
     }
     
-    public void ReplaceStructure(Vector2Int position, StructureType type)
+    public void ReplaceStructure(Vector2Int position, StructureType type, Player player)
     {
         if(structures[position.x, position.y] != null)
         {
@@ -104,8 +105,8 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y] = structureObject.GetComponent<Structure>();
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
-        
-
+        structures[position.x, position.y].player = player;
+        //TODO
     }
 
     private Structure hiddenStructure;
@@ -246,7 +247,7 @@ public class MapBase : MonoBehaviour
         node = node.parent;
         while (node.parent != null)
         {
-            ReplaceStructure(node.position, StructureType.Racine);
+            ReplaceStructure(node.position, StructureType.Racine, roundManager.currentPlayer);
             node = node.parent;
         }
     }

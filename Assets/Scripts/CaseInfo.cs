@@ -21,6 +21,11 @@ public class CaseInfo : MonoBehaviour
         meshRenderer.materials = mats;
     }
 
+    public bool IsCaseUsable(MapBase.StructureType planteID, Action.ActionType actionType)
+    {
+        return IsCasePlantable(planteID);
+    }
+
     public bool IsCasePlantable(MapBase.StructureType planteID)
     {
         Debug.Log(planteID);
@@ -51,6 +56,13 @@ public class CaseInfo : MonoBehaviour
         {
             return false;
         }
+
+
+        if((map.structures[casePos.x, casePos.y] != null && map.structures[casePos.x, casePos.y].player != map.roundManager.currentPlayer))
+        {
+            return false;
+        }
+
         return true;
 
     }
