@@ -1,17 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class Structure : MonoBehaviour
 {
+    private int _niveau;
+    private int _life;
+
     public MapBase.StructureType type;
     public Vector2Int position;
     public Player player;
-    public int niveau;
     public int[] productionStats;
     public int[] pvStats;
     public int[] dommageStats;
     public int attackRange;
+
+    public int niveau
+    {
+        get
+        {
+            return _niveau;
+        }
+        set
+        {
+            _niveau = value;
+            levelText.text = _niveau.ToString();
+            
+        }
+    }
+
+    public int life
+    {
+        get
+        {
+            return _niveau;
+        }
+        set
+        {
+            _life = value;
+            lifeText.text = _life.ToString();
+            lifeBar.transform.localScale = new Vector3(_life / (float)pvStats[niveau], 1, 1);
+        }
+    }
+
+    public TextMeshPro lifeText;
+    public TextMeshPro levelText;
+    public GameObject lifeBar;
 
     public abstract void ProduceRessource(Player player); 
     public void Arroser(Player player)
