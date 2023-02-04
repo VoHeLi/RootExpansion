@@ -24,8 +24,11 @@ public class Player : MonoBehaviour
 
     public int[] ressources = new int[1];
 
+    public bool endTurn;
+
     void Start()
     {
+        endTurn = false;
         this.updateRessources();
     }
 
@@ -39,6 +42,10 @@ public class Player : MonoBehaviour
         //Wait for action
         while(action == null)
         {
+            if (endTurn)
+            {
+                action = new Action(Action.ActionType.Pass);
+            }
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -47,6 +54,8 @@ public class Player : MonoBehaviour
         
         action = null;
     }
+
+    
 
     public void SetAction(Action action)
     {
