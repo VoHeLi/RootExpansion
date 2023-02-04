@@ -92,14 +92,18 @@ public class MapBase : MonoBehaviour
             Destroy(structures[position.x, position.y].gameObject);
         }
 
-        PlaceRoots(position);
+        if(type != StructureType.Racine)
+        {
+            PlaceRoots(position);
+        }
+        
 
         GameObject structureObject = Instantiate(structurePrefabs[(int)type]);
         structureObject.transform.position = GetRealPosition(position);
         structureObject.transform.rotation = currentRotation;
         structures[position.x, position.y] = structureObject.GetComponent<Structure>();
         structures[position.x, position.y].position = position;
-
+        structures[position.x, position.y].type = type;
         
 
     }
@@ -209,7 +213,7 @@ public class MapBase : MonoBehaviour
         {
             node = (TileNode)queue.Dequeue();
 
-            if (structures[node.position.x, node.position.y] != null)
+            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine)
             {
                 break;
 
@@ -233,10 +237,9 @@ public class MapBase : MonoBehaviour
 
             
             if (node == null) return;
-            while(node.parent != null)
+            while(node != null)
             {
-                Debug.Log("test" + node.position + "LEL" + node.parent);
-                //ReplaceStructure(node.position, StructureType.Racine);
+                ReplaceStructure(node.position, StructureType.Racine);
                 node = node.parent;
             }
         }
