@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
         Debug.Log(action.actionType + " : " + action.actionTile.casePos);
 
+        action.Execute();
+
         action = null;
     }
 
