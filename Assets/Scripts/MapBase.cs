@@ -106,7 +106,6 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
         structures[position.x, position.y].player = player;
-        //TODO
     }
 
     private Structure hiddenStructure;
@@ -219,7 +218,7 @@ public class MapBase : MonoBehaviour
                 return;
             }
 
-            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine)
+            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine && structures[node.position.x, node.position.y].player == roundManager.currentPlayer)
             {
                 break;
 
