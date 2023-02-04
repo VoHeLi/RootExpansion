@@ -487,6 +487,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2727005073260244875, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: tileSelector
+      value: 
+      objectReference: {fileID: 344905738}
     - target: {fileID: 3791676951344603481, guid: e94346d6f777680458b1cc6472835e86, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

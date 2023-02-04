@@ -49,6 +49,7 @@ public class Action
 
     public void Execute(MapBase map)
     {
+        Debug.Log(actionType);
         switch (actionType)
         {
             case ActionType.PlantPousse:

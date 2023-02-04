@@ -248,7 +248,6 @@ public class MapBase : MonoBehaviour
         node = node.parent;
         while (node.parent != null)
         {
-            Debug.Log(node.position);
             ReplaceStructure(node.position, StructureType.Racine);
             node = node.parent;
         }
