@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -12,9 +13,21 @@ public class Player : MonoBehaviour
 
     private Action action = null;
     public MapBase map;
-    public int[] ressources = new int[1] {0};
     public int[] seeds = new int[4];
 
+    public TextMeshProUGUI waterCount;
+
+    public enum Ressources : int
+    {
+        Eau = 0
+    }
+
+    public int[] ressources = new int[1];
+
+    void Start()
+    {
+        this.updateRessources();
+    }
 
     public IEnumerator StartTurn()
     {
@@ -29,7 +42,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        Debug.Log(action.actionType + " : " + action.actionTile.casePos);
+        UnityEngine.Debug.Log(action.actionType + " : " + action.actionTile.casePos);
         map.ResetTempStructure();
         action.Execute(map);
         
@@ -39,5 +52,16 @@ public class Player : MonoBehaviour
     public void SetAction(Action action)
     {
         this.action = action;
+    }
+
+    public string getName()
+    {
+        return this.playerName;
+    }
+
+    public void updateRessources()
+    {
+        UnityEngine.Debug.Log(waterCount);
+        waterCount.text = this.ressources[(int)Player.Ressources.Eau].ToString();
     }
 }
