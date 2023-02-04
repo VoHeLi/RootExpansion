@@ -6,7 +6,7 @@ public abstract class Structure : MonoBehaviour
 {
     public MapBase.StructureType type;
     public Vector2Int position;
-    public int joueurId;
+    public Player player;
     public int niveau;
     public int[] productionStats;
     public int[] pvStats;

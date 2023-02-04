@@ -11,7 +11,7 @@ public class TileSelector : MonoBehaviour
     [SerializeField] private Material selectedOkOutline;
     [SerializeField] private Material selectedNotOkOutline;
 
-    [SerializeField] private MapBase map;
+    [SerializeField] public MapBase map;
 
 
     private Vector2 _selectedPos;
@@ -45,12 +45,15 @@ public class TileSelector : MonoBehaviour
 
     void Update()
     {
-        if(_caseInfo != null)
-        {
-            _caseInfo.SetOutline(_caseInfo.IsCasePlantable(planteID) ? okOutline : notOkOutline);
-        }
 
         if (pendingAction == null) return;
+
+        if (_caseInfo != null)
+        {
+            _caseInfo.SetOutline(_caseInfo.IsCaseUsable(planteID, pendingAction.actionType) ? okOutline : notOkOutline);
+        }
+
+        
         
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -61,11 +64,11 @@ public class TileSelector : MonoBehaviour
 
             
 
-            _caseInfo.SetOutline(_caseInfo.IsCasePlantable(planteID) ? selectedOkOutline : selectedNotOkOutline);
+            _caseInfo.SetOutline(_caseInfo.IsCaseUsable(planteID, pendingAction.actionType) ? selectedOkOutline : selectedNotOkOutline);
 
             pendingAction.actionTile = _caseInfo;
 
-            if (_caseInfo.IsCasePlantable(planteID))
+            if (_caseInfo.IsCaseUsable(planteID, pendingAction.actionType))
             {
                 pendingAction.Previsualize(map);
                 if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
