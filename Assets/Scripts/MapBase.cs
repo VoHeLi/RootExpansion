@@ -22,7 +22,11 @@ public class MapBase : MonoBehaviour
     public enum TileType : int
     {
         Grass = 0,
-        Field = 1
+        Water = 1,
+        SunFlowerField = 2,
+        CarnivorusField = 3,
+        IvyField = 4,
+        CactusField = 5
     }
 
     public enum StructureType : int
@@ -63,9 +67,25 @@ public class MapBase : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i)/noiseSpacing , randomOffset + ((float)j) / noiseSpacing);
-                if(noiseTileType > 0.7f)
+                if (noiseTileType < 0.005f)
                 {
-                    tiles[i, j] = TileType.Field;
+                    tiles[i, j] = TileType.CactusField;
+                }
+                else if (0.2f < noiseTileType && noiseTileType < 0.205f)
+                {
+                    tiles[i, j] = TileType.IvyField;
+                }
+                else if (0.4f < noiseTileType && noiseTileType < 0.405f)
+                {
+                    tiles[i, j] = TileType.CarnivorusField;
+                }
+                else if (0.6f < noiseTileType && noiseTileType < 0.605f)
+                {
+                    tiles[i, j] = TileType.SunFlowerField;
+                }
+                else if (noiseTileType > 0.7f)
+                {
+                    tiles[i, j] = TileType.Water;
                 }
                 else
                 {
