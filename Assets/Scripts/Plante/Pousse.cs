@@ -12,7 +12,7 @@ public class Pousse : Structure
     }
     public override void ProduceRessource(Player player)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void Action()

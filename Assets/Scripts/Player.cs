@@ -32,12 +32,9 @@ public class Player : MonoBehaviour
         this.updateRessources();
     }
 
-    public IEnumerator StartTurn()
+    public IEnumerator WaitForAction()
     {
-        //Ressources
-        foreach(Structure structure in playerStructures){
-            structure.ProduceRessource(this);
-        }
+        
 
         //Wait for action
         while(action == null)

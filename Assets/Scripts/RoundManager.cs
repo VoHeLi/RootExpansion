@@ -54,10 +54,16 @@ public class RoundManager : MonoBehaviour
 
                 currentPlayer = player;
 
-                for(int i = 0; i < actionCount; i++)
+                //Ressources
+                foreach (Structure structure in currentPlayer.playerStructures)
+                {
+                    structure.ProduceRessource(currentPlayer);
+                }
+
+                for (int i = 0; i < actionCount; i++)
                 {
                     turnCount.text = "Tour " + nbTurn.ToString() + " | Action " + (i+1).ToString() + " | " + currentPlayer.getName();
-                    yield return player.StartTurn();
+                    yield return player.WaitForAction();
 
                     if (currentPlayer.endTurn)
                     {

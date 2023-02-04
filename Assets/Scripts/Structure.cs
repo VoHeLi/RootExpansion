@@ -110,6 +110,10 @@ public abstract class Structure : MonoBehaviour
     public void Start()
     {
         map = GameObject.Find("Map").GetComponent<MapBase>();
-        life = pvStats[0];
+        if(pvStats != null && pvStats.Length > 0)
+        {
+            life = pvStats[0];
+        }
+        
     }
 }
