@@ -151,8 +151,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -537,18 +537,6 @@ PrefabInstance:
     - target: {fileID: 1465060579931914804, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_Name
       value: Map
-      objectReference: {fileID: 0}
-    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
-      propertyPath: space
-      value: 2.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
-      propertyPath: width
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
-      propertyPath: height
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder

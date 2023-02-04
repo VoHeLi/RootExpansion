@@ -20,4 +20,19 @@ public class Action
     {
         actionType = action;
     }
+
+    public void Execute()
+    {
+        switch (actionType)
+        {
+            case ActionType.Plant:
+                Plant();
+                break;
+        }
+    }
+
+    private void Plant()
+    {
+
+    }
 }

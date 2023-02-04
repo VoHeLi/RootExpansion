@@ -8,6 +8,7 @@ public class ShowInfo : MonoBehaviour
     public GameObject planterText;
     public GameObject arroserText;
     public GameObject attaquerText;
+    public GameObject waterInfo;
 
     void Start() 
     {
@@ -15,6 +16,7 @@ public class ShowInfo : MonoBehaviour
         planterText.SetActive(false);
         arroserText.SetActive(false);
         attaquerText.SetActive(false);
+        waterInfo.SetActive(false);
     }
 
     // Planter
@@ -54,5 +56,17 @@ public class ShowInfo : MonoBehaviour
     {
         infoActionBackgroud.SetActive(false);
         attaquerText.SetActive(false);
+    }
+
+    // Eau
+    public void showInfoWater()
+    {
+        UnityEngine.Debug.Log("test");
+        waterInfo.SetActive(true);
+    }
+
+    public void hideInfoWater()
+    {
+        waterInfo.SetActive(false);
     }
 }
