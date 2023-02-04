@@ -106,7 +106,6 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
         structures[position.x, position.y].player = player;
-        //TODO
     }
 
     private Structure hiddenStructure;

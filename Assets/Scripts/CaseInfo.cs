@@ -28,7 +28,6 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCasePlantable(MapBase.StructureType planteID)
     {
-        Debug.Log(planteID);
         int[] plantRootRadiusArray = new int[6] { 3, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 
@@ -42,7 +41,7 @@ public class CaseInfo : MonoBehaviour
                     // la case doit etre a une distance de la case
                     if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) <= plantRootRadius)
                     {
-                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null)
+                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null && (map.structures[casePos.x + iOffset, casePos.y + jOffset].player == map.roundManager.currentPlayer))
                         {
                             plantCount++;
                         }
@@ -57,11 +56,12 @@ public class CaseInfo : MonoBehaviour
             return false;
         }
 
-
-        if((map.structures[casePos.x, casePos.y] != null && map.structures[casePos.x, casePos.y].player != map.roundManager.currentPlayer))
+        /*if ((map.structures[casePos.x, casePos.y] != null) && (map.structures[casePos.x, casePos.y].player != map.roundManager.currentPlayer))
         {
+            Debug.Log(casePos);
             return false;
-        }
+        }*/
+
 
         return true;
     }
