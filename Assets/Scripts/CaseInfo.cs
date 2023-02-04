@@ -23,6 +23,7 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCasePlantable()
     {
+
         // CETTE FONCTION DEPEND DU TYPE DE PLANTE QUE L'ON SEME ET L'ORIGINE
         int plantRootRadius = 3; //A CHANGER
 
