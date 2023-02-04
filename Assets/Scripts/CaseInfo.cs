@@ -62,6 +62,8 @@ public class CaseInfo : MonoBehaviour
         return true;
     }
 
+    public bool isCaseAttackable() { return true; }
+
 
     int GetTileDistance(Vector2Int case2Pos)
     {
