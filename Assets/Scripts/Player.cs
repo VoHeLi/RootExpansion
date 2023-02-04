@@ -29,8 +29,9 @@ public class Player : MonoBehaviour
 
         Debug.Log(action.actionType + " : " + action.actionTile.casePos);
 
+        map.ResetTempStructure();
         action.Execute(map);
-
+        
         action = null;
     }
 

@@ -61,11 +61,17 @@ public class TileSelector : MonoBehaviour
 
             _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? selectedOkOutline : selectedNotOkOutline);
 
+            pendingAction.actionTile = _caseInfo;
 
+            if (_caseInfo.IsCasePlantable())
+            {
+                pendingAction.Previsualize(map);
+            }
+            
 
             if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
             {
-                pendingAction.actionTile = _caseInfo;
+                
                 roundManager.currentPlayer.SetAction(pendingAction);
                 pendingAction = null;
             }
@@ -80,6 +86,7 @@ public class TileSelector : MonoBehaviour
 
     public void BeginPlantAction()
     {
+        map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Plant);
 
         List<CaseInfo> possible = new List<CaseInfo>();
@@ -100,11 +107,13 @@ public class TileSelector : MonoBehaviour
 
     public void BeginAttackAction()
     {
+        map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Attack);
     }
 
     public void BeginArroserAction()
     {
+        map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Arroser);
     }
 }

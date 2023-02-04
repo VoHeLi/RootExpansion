@@ -77,15 +77,57 @@ public class MapBase : MonoBehaviour
         if(structures[position.x, position.y] != null)
         {
             Destroy(structures[position.x, position.y].gameObject);
-            Debug.Log("Destroy!!!");
         }
 
         GameObject structureObject = Instantiate(structurePrefabs[0]);
         structureObject.transform.position = GetRealPosition(position);
-        structureObject.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+        structureObject.transform.rotation = currentRotation;
         structures[position.x, position.y] = structureObject.GetComponent<Structure>();
         structures[position.x, position.y].position = position;
 
+    }
+
+    private Structure hiddenStructure;
+    private Structure previewStructure;
+    private Quaternion currentRotation = Quaternion.identity;
+
+    public void ReplaceStructureTemp(Vector2Int position)
+    {
+        if(hiddenStructure != null)
+        {
+            hiddenStructure.gameObject.SetActive(true);
+        }
+
+        if (structures[position.x, position.y] != null)
+        {
+            hiddenStructure = structures[position.x, position.y];
+            hiddenStructure.gameObject.SetActive(false);
+        }
+
+        if (previewStructure == null)
+        {
+            GameObject structureObject = Instantiate(structurePrefabs[0]);
+            currentRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            structureObject.transform.rotation = currentRotation;
+            previewStructure = structureObject.GetComponent<Structure>();
+            previewStructure.position = position;
+        }
+
+        previewStructure.gameObject.transform.position = GetRealPosition(position);
+
+    }
+
+    public void ResetTempStructure()
+    {
+        if(hiddenStructure != null)
+        {
+            hiddenStructure.gameObject.SetActive(true);
+        }
+        if(previewStructure != null)
+        {
+            Destroy(previewStructure.gameObject);
+            previewStructure = null;
+        }
     }
 
     public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible)

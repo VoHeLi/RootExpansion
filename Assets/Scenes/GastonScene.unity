@@ -475,6 +475,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 835659021142902768, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 835659021142902768, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 835659021142902768, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791676951344603481, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791676951344603481, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791676951344603481, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e94346d6f777680458b1cc6472835e86, type: 3}
 --- !u!1001 &768729923830085812
@@ -659,24 +683,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1050580814}
     - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
-      propertyPath: okOutline
-      value: 
-      objectReference: {fileID: 2100000, guid: 7adf6333d3483d347874233008588634, type: 2}
-    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
-      propertyPath: notOkOutline
-      value: 
-      objectReference: {fileID: 2100000, guid: e4c5c57faca167340b8e0917681b082b, type: 2}
-    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
       propertyPath: selectedOutline
       value: 
       objectReference: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
-    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
-      propertyPath: selectedOkOutline
-      value: 
-      objectReference: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
-    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
-      propertyPath: selectedNotOkOutline
-      value: 
-      objectReference: {fileID: 2100000, guid: 5c71634d2f91f8a418fbfe769fcc6783, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
