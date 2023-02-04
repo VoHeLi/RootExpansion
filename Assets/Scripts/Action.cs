@@ -37,7 +37,7 @@ public class Action
         switch (actionType)
         {
             case ActionType.Plant:
-                map.ReplaceStructure(actionTile.casePos);
+                map.ReplaceStructure(actionTile.casePos, 0);
                 break;
         }
     }

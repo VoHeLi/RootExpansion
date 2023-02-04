@@ -10,6 +10,6 @@ public class UpDownAnimation : MonoBehaviour
    
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, -amplitude+amplitude * Mathf.Cos(2*Mathf.PI*frequency*Time.time) * Mathf.Cos(2 * Mathf.PI * vecteurdonde * transform.position.x), transform.position.z);
+        transform.position = new Vector3(transform.position.x, -amplitude+amplitude * Mathf.Cos(2*Mathf.PI*(frequency*Time.time- vecteurdonde * transform.position.x)), transform.position.z);
     }
 }

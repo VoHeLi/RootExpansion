@@ -215,7 +215,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &344905738 stripped
 MonoBehaviour:
@@ -574,12 +574,20 @@ PrefabInstance:
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: structurePrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: structurePrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 6465009777725549952, guid: 7ebfff5add0a8bf45902cf9bee562d88, type: 3}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: structurePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4864541349362158220, guid: f208694dd8ba6764a8b94cf2e933bfe2, type: 3}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_LocalPosition.x

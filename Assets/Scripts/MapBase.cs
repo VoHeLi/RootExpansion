@@ -21,6 +21,12 @@ public class MapBase : MonoBehaviour
         Field = 1
     }
 
+    public enum StructureType : int
+    {
+        Pousse = 0,
+        Racine = 1
+    }
+
     public TileType[,] tiles;
 
     private GameObject[,] tilesObject;
@@ -67,7 +73,7 @@ public class MapBase : MonoBehaviour
         }
 
 
-        ReplaceStructure(Vector2Int.zero);
+        ReplaceStructure(Vector2Int.zero, StructureType.Pousse);
     }
 
     private Vector3 GetRealPosition(Vector2Int position)
@@ -75,18 +81,22 @@ public class MapBase : MonoBehaviour
         return tilesObject[position.x, position.y].transform.position;
     }
     
-    public void ReplaceStructure(Vector2Int position)
+    public void ReplaceStructure(Vector2Int position, StructureType type)
     {
         if(structures[position.x, position.y] != null)
         {
             Destroy(structures[position.x, position.y].gameObject);
         }
 
-        GameObject structureObject = Instantiate(structurePrefabs[0]);
+        PlaceRoots(position);
+
+        GameObject structureObject = Instantiate(structurePrefabs[(int)type]);
         structureObject.transform.position = GetRealPosition(position);
         structureObject.transform.rotation = currentRotation;
         structures[position.x, position.y] = structureObject.GetComponent<Structure>();
         structures[position.x, position.y].position = position;
+
+        
 
     }
 
@@ -140,6 +150,90 @@ public class MapBase : MonoBehaviour
             for(int j = 0; j < height; j++)
             {
                 (tilesInfos[i, j].IsCasePlantable() ? possible : notPossible).Add(tilesInfos[i, j]);
+            }
+        }
+    }
+
+    private List<Vector2Int> GetNeighbours(Vector2Int position)
+    {
+        List<Vector2Int> neightbours = new List<Vector2Int>();
+        neightbours.Add(position + Vector2Int.left);
+        neightbours.Add(position + Vector2Int.right);
+        neightbours.Add(position + Vector2Int.up);
+        neightbours.Add(position + Vector2Int.down);
+
+        if(position.y % 2 == 0)
+        {
+            neightbours.Add(position + Vector2Int.up + Vector2Int.left);
+            neightbours.Add(position + Vector2Int.down + Vector2Int.left);
+        }
+        else
+        {
+            neightbours.Add(position + Vector2Int.up + Vector2Int.right);
+            neightbours.Add(position + Vector2Int.down + Vector2Int.right);
+        }
+
+        return neightbours;
+    }
+
+    class TileNode
+    {
+        public TileNode parent;
+        public Vector2Int position;
+        public int length;
+
+        public TileNode(TileNode parent, Vector2Int position, int length)
+        {
+            this.parent = parent;
+            this.position = position;
+            this.length = length;
+        }
+    }
+
+    private void PlaceRoots(Vector2Int position)
+    {
+        bool[,] traveled = new bool[width, height];
+        Queue queue = new Queue();
+
+        TileNode node = new TileNode(null, position, 0);
+
+        queue.Enqueue(node);
+
+
+
+        while(queue.Count > 0)
+        {
+            node = (TileNode)queue.Dequeue();
+
+            if (structures[node.position.x, node.position.y] != null)
+            {
+                break;
+
+            }
+            if (traveled[node.position.x, node.position.y] || node.length > 5) continue;
+
+            traveled[node.position.x, node.position.y] = true;
+
+            List<Vector2Int> neighbours = GetNeighbours(node.position);
+
+            foreach(Vector2Int neighbour in neighbours)
+            {
+                if ((neighbour.x  >= 0) && (neighbour.x  < height) && (neighbour.y >= 0) && (neighbour.y < width))
+                {
+                    if(tiles[neighbour.x, neighbour.y] == TileType.Grass)
+                    {
+                        queue.Enqueue(new TileNode(node, neighbour, node.length+1));
+                    }
+                }
+            }
+
+            
+            if (node == null) return;
+            while(node.parent != null)
+            {
+                Debug.Log("test" + node.position + "LEL" + node.parent);
+                //ReplaceStructure(node.position, StructureType.Racine);
+                node = node.parent;
             }
         }
     }
