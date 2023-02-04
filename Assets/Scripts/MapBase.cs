@@ -215,12 +215,17 @@ public class MapBase : MonoBehaviour
         {
             node = (TileNode)queue.Dequeue();
 
+            if(node.length > 10)
+            {
+                return;
+            }
+
             if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine)
             {
                 break;
 
             }
-            if (traveled[node.position.x, node.position.y] || node.length > 5) continue;
+            if (traveled[node.position.x, node.position.y]) continue;
 
             traveled[node.position.x, node.position.y] = true;
 
@@ -237,13 +242,15 @@ public class MapBase : MonoBehaviour
                 }
             }
 
-            
-            if (node == null) return;
-            while(node != null)
-            {
-                ReplaceStructure(node.position, StructureType.Racine);
-                node = node.parent;
-            }
+        }
+
+        if (node == null) return;
+        node = node.parent;
+        while (node.parent != null)
+        {
+            Debug.Log(node.position);
+            ReplaceStructure(node.position, StructureType.Racine);
+            node = node.parent;
         }
     }
 }
