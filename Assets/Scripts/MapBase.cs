@@ -114,7 +114,7 @@ public class MapBase : MonoBehaviour
     private Structure previewStructure;
     private Quaternion currentRotation = Quaternion.identity;
 
-    public void ReplaceStructureTemp(Vector2Int position)
+    public void ReplaceStructureTemp(Vector2Int position, StructureType type)
     {
         if(hiddenStructure != null)
         {
@@ -129,7 +129,7 @@ public class MapBase : MonoBehaviour
 
         if (previewStructure == null)
         {
-            GameObject structureObject = Instantiate(structurePrefabs[0]);
+            GameObject structureObject = Instantiate(structurePrefabs[(int)type]);
             currentRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
             structureObject.transform.rotation = currentRotation;
             previewStructure = structureObject.GetComponent<Structure>();
