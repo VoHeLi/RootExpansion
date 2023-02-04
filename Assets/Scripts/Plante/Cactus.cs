@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tournesol : Structure
+public class Cactus : Structure
 {
-    Tournesol()
+    Cactus()
     {
-        productionStats = new int[5] { 1, 1, 2, 2, 3 };
-        pvStats = new int[5] { 10, 20, 20, 35, 35 };
-        dommageStats = new int[5] { 0, 0, 0, 0, 0 };
-        plantRootRadius = 3;
+        productionStats = new int[5] { 0, 0, 0, 0, 0 };
+        pvStats = new int[5] { 15, 25, 25, 40, 40 };
+        dommageStats = new int[5] { 5, 5, 10, 10, 15 };
+        plantRootRadius = 2;
     }
     public override void ProduceRessource(Player player)
     {
-        //production de nutriment 1/1/
         throw new System.NotImplementedException();
     }
 
