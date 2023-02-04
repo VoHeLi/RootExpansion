@@ -47,7 +47,7 @@ public class TileSelector : MonoBehaviour
     {
         if(_caseInfo != null)
         {
-            _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? okOutline : notOkOutline);
+            _caseInfo.SetOutline(_caseInfo.IsCasePlantable(0) ? okOutline : notOkOutline); //todo
         }
 
         if (pendingAction == null) return;
@@ -61,11 +61,11 @@ public class TileSelector : MonoBehaviour
 
             
 
-            _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? selectedOkOutline : selectedNotOkOutline);
+            _caseInfo.SetOutline(_caseInfo.IsCasePlantable(0) ? selectedOkOutline : selectedNotOkOutline); //TODO
 
             pendingAction.actionTile = _caseInfo;
 
-            if (_caseInfo.IsCasePlantable())
+            if (_caseInfo.IsCasePlantable(0)) //TODO
             {
                 pendingAction.Previsualize(map);
                 if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)

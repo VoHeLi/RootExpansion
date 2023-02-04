@@ -94,7 +94,7 @@ public class MapBase : MonoBehaviour
 
         if(type != StructureType.Racine)
         {
-            PlaceRoots(position);
+            //PlaceRoots(position);
         }
         
 
@@ -157,7 +157,7 @@ public class MapBase : MonoBehaviour
         {
             for(int j = 0; j < height; j++)
             {
-                (tilesInfos[i, j].IsCasePlantable() ? possible : notPossible).Add(tilesInfos[i, j]);
+                (tilesInfos[i, j].IsCasePlantable(0) ? possible : notPossible).Add(tilesInfos[i, j]); //TODO
             }
         }
     }
