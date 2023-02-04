@@ -57,7 +57,6 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    
     void Update()
     {
         
