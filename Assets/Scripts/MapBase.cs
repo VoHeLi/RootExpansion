@@ -10,11 +10,9 @@ public class MapBase : MonoBehaviour
     [SerializeField] public int width;
     [SerializeField] public int height;
     [SerializeField] private float space;
-
+    [SerializeField] public RoundManager roundManager;
 
     private float noiseSpacing = 5f;
-
-    public TileSelector tileSelector;
 
 
     public enum TileType : int
@@ -79,7 +77,8 @@ public class MapBase : MonoBehaviour
         }
 
 
-        ReplaceStructure(Vector2Int.zero, StructureType.Pousse);
+        ReplaceStructure(Vector2Int.zero, StructureType.Pousse, roundManager.players[0]);
+        ReplaceStructure(Vector2Int.right * 10, StructureType.Pousse, roundManager.players[1]);
     }
 
     private Vector3 GetRealPosition(Vector2Int position)
@@ -87,7 +86,7 @@ public class MapBase : MonoBehaviour
         return tilesObject[position.x, position.y].transform.position;
     }
     
-    public void ReplaceStructure(Vector2Int position, StructureType type)
+    public void ReplaceStructure(Vector2Int position, StructureType type, Player player)
     {
         if(structures[position.x, position.y] != null)
         {
@@ -106,8 +105,7 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y] = structureObject.GetComponent<Structure>();
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
-        
-
+        structures[position.x, position.y].player = player;
     }
 
     private Structure hiddenStructure;
@@ -153,18 +151,18 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible)
+    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type)
     {
         for(int i = 0; i < width; i++)
         {
             for(int j = 0; j < height; j++)
             {
-                (tilesInfos[i, j].IsCasePlantable(tileSelector.getPlantID()) ? possible : notPossible).Add(tilesInfos[i, j]);
+                (tilesInfos[i, j].IsCasePlantable(type) ? possible : notPossible).Add(tilesInfos[i, j]);
             }
         }
     }
 
-    private List<Vector2Int> GetNeighbours(Vector2Int position)
+    public List<Vector2Int> GetNeighbours(Vector2Int position)
     {
         List<Vector2Int> neightbours = new List<Vector2Int>();
         neightbours.Add(position + Vector2Int.left);
@@ -220,7 +218,7 @@ public class MapBase : MonoBehaviour
                 return;
             }
 
-            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine)
+            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine && structures[node.position.x, node.position.y].player == roundManager.currentPlayer)
             {
                 break;
 
@@ -248,8 +246,7 @@ public class MapBase : MonoBehaviour
         node = node.parent;
         while (node.parent != null)
         {
-            Debug.Log(node.position);
-            ReplaceStructure(node.position, StructureType.Racine);
+            ReplaceStructure(node.position, StructureType.Racine, roundManager.currentPlayer);
             node = node.parent;
         }
     }

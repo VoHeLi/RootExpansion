@@ -9,13 +9,9 @@ public class Carnivore : Structure
         productionStats = new int[5] { 0, 0, 0, 0, 0 };
         pvStats = new int[5] { 25, 50, 50, 70, 70 };
         dommageStats = new int[5] { 20, 20, 40 , 40, 60 };
+        attackRange = 1;
     }
     public override void ProduceRessource(Player player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Arroser(Player player)
     {
         throw new System.NotImplementedException();
     }

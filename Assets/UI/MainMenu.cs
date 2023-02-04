@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainBase : MonoBehaviour
 {
     // Start is called before the first frame update
     public void PlayGame()
@@ -14,7 +14,6 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit !");
         Application.Quit();
     }
 }

@@ -52,19 +52,19 @@ public class Action
         switch (actionType)
         {
             case ActionType.PlantPousse:
-                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Pousse);
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Pousse, map.roundManager.currentPlayer);
                 break;
             case ActionType.PlantCactus:
-                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Cactus);
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Cactus, map.roundManager.currentPlayer);
                 break;
             case ActionType.PlantCarnivore:
-                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Carnivore);
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Carnivore, map.roundManager.currentPlayer);
                 break;
             case ActionType.PlantLierre:
-                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Lierre);
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Lierre, map.roundManager.currentPlayer);
                 break;
             case ActionType.PlantTournesol:
-                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Tournesol);
+                map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Tournesol, map.roundManager.currentPlayer);
                 break;
         }
     }

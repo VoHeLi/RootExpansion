@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        UnityEngine.Debug.Log(action.actionType + " : " + action.actionTile.casePos);
         map.ResetTempStructure();
         action.Execute(map);
         

@@ -13,7 +13,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private MapBase map;
 
-    private Player[] players;
+    public Player[] players;
 
     public TextMeshProUGUI waterCount;
 
