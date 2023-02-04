@@ -9,11 +9,12 @@ public class MapBase : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] public int width;
     [SerializeField] public int height;
+    [SerializeField] public int onlyGrassMargin = 5;
     [SerializeField] private float space;
     [SerializeField] public RoundManager roundManager;
 
-    [SerializeField] private Material blueTeamOutline;
-    [SerializeField] private Material redTeamOutline;
+    [SerializeField] public Material blueTeamOutline;
+    [SerializeField] public Material redTeamOutline;
 
     private float noiseSpacing = 5f;
 
@@ -128,6 +129,8 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
         structures[position.x, position.y].player = player;
+        player.playerStructures.Add(structures[position.x, position.y]);
+        //structures[position.x, position.y].map = this;
         tilesInfos[position.x, position.y].SetOutline(roundManager.currentPlayer == roundManager.players[0] ? blueTeamOutline : redTeamOutline);
     }
 
@@ -174,13 +177,13 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type)
+    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type, Action.ActionType actionType)
     {
         for(int i = 0; i < width; i++)
         {
             for(int j = 0; j < height; j++)
             {
-                (tilesInfos[i, j].IsCasePlantable(type) ? possible : notPossible).Add(tilesInfos[i, j]);
+                (tilesInfos[i, j].IsCaseUsable(type, actionType) ? possible : notPossible).Add(tilesInfos[i, j]);
             }
         }
     }

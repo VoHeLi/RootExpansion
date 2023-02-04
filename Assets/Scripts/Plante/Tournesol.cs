@@ -14,6 +14,7 @@ public class Tournesol : Structure
     [ContextMenu("produce")]
     public override void ProduceRessource(Player player)
     {
+        Debug.Log("test");
         player.ressources[(int)Player.Ressources.Eau] += productionStats[niveau];
         player.updateRessources();
     }
@@ -21,20 +22,6 @@ public class Tournesol : Structure
     public override void Action()
     {
         throw new System.NotImplementedException();
-    }
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
 

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class CamMovement : MonoBehaviour
 {
     public PlayerInput input;
-    public float speed = 10;
+    public float speed = 20;
 
     public Camera cam;
     public float scrollingSpeed = 200;
