@@ -23,6 +23,24 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCasePlantable()
     {
+        // CETTE FONCTION DEPEND DU TYPE DE PLANTE QUE L'ON SEME ET L'ORIGINE
+        Vector2Int originPos = new Vector2Int(0, 0); //A CHANGER
+        int plantRootRadius = 3; //A CHANGER
+
+
+        // la case doit etre a une distance de la case
+        if (GetTileDistance(originPos) > plantRootRadius)
+        {
+            return false;
+        }
+
+        // la case doit etre de type grass
+        if (map.tiles[casePos.x, casePos.y] != 0)
+        {
+            return false;
+        }
+
+
         return true;
 
     }
