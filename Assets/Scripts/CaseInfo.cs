@@ -52,7 +52,14 @@ public class CaseInfo : MonoBehaviour
             return false;
         }
         return true;
+    }
 
+    public bool isCaseArrosable(Structure selectedPlant, int water)
+    {
+        if(selectedPlant == null) { return false;}
+        if(selectedPlant.niveau >= 3 ) { return false;}
+        if (Mathf.Pow(2, selectedPlant.niveau + 1) > water) { return false;}
+        return true;
     }
 
 
