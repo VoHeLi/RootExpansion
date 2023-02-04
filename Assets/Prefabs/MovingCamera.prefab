@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 1217130126331433772}
   speed: 10
+  cam: {fileID: 1217130126331433774}
+  scrollingSpeed: 200
 --- !u!114 &1217130126331433772
 MonoBehaviour:
   m_ObjectHideFlags: 0
