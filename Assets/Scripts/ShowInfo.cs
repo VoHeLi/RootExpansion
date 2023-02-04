@@ -4,69 +4,86 @@ using UnityEngine;
 
 public class ShowInfo : MonoBehaviour
 {
-    public GameObject infoActionBackgroud;
-    public GameObject planterText;
-    public GameObject arroserText;
-    public GameObject attaquerText;
+    public GameObject plantInfo;
+    public GameObject sprayInfo;
+    public GameObject attackInfo;
     public GameObject waterInfo;
+    public GameObject seedInfo;
+    public GameObject settingsInfo;
 
     void Start() 
     {
-        infoActionBackgroud.SetActive(false);
-        planterText.SetActive(false);
-        arroserText.SetActive(false);
-        attaquerText.SetActive(false);
+        plantInfo.SetActive(false);
+        sprayInfo.SetActive(false);
+        attackInfo.SetActive(false);
         waterInfo.SetActive(false);
+        settingsInfo.SetActive(false);
+        seedInfo.SetActive(false);
     }
 
     // Planter
     public void showInfoPlanter()
     {
-        infoActionBackgroud.SetActive(true);
-        planterText.SetActive(true);
+        plantInfo.SetActive(true);
     }
 
     public void hideInfoPlanter()
     {
-        infoActionBackgroud.SetActive(false);
-        planterText.SetActive(false);
+        plantInfo.SetActive(false);
     }
 
     // Arroser
     public void showInfoArroser()
     {
-        infoActionBackgroud.SetActive(true);
-        arroserText.SetActive(true);
+        sprayInfo.SetActive(true);
     }
 
     public void hideInfoArroser()
     {
-        infoActionBackgroud.SetActive(false);
-        arroserText.SetActive(false);
+        sprayInfo.SetActive(false);
     }
 
     // Attaquer
     public void showInfoAttaquer()
     {
-        infoActionBackgroud.SetActive(true);
-        attaquerText.SetActive(true);
+        attackInfo.SetActive(true);
     }
 
     public void hideInfoAttaquer()
     {
-        infoActionBackgroud.SetActive(false);
-        attaquerText.SetActive(false);
+        attackInfo.SetActive(false);
     }
 
     // Eau
     public void showInfoWater()
     {
-        UnityEngine.Debug.Log("test");
         waterInfo.SetActive(true);
     }
 
     public void hideInfoWater()
     {
         waterInfo.SetActive(false);
+    }
+
+    // Graines
+    public void showInfoSeed()
+    {
+        seedInfo.SetActive(true);
+    }
+
+    public void hideInfoSeed()
+    {
+        seedInfo.SetActive(false);
+    }
+
+    // Settings
+    public void showInfoSettings()
+    {
+        settingsInfo.SetActive(true);
+    }
+
+    public void hideInfoSettings()
+    {
+        settingsInfo.SetActive(false);
     }
 }
