@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{  
+{
 
     [SerializeField] public List<Structure> playerStructures;
 
@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     private Action action = null;
     public MapBase map;
+    public int[] ressources = new int[1] {0};
 
 
     public IEnumerator StartTurn()
@@ -28,9 +29,9 @@ public class Player : MonoBehaviour
         }
 
         Debug.Log(action.actionType + " : " + action.actionTile.casePos);
-
+        map.ResetTempStructure();
         action.Execute(map);
-
+        
         action = null;
     }
 

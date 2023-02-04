@@ -6,7 +6,12 @@ using UnityEngine.InputSystem;
 public class TileSelector : MonoBehaviour
 {
     [SerializeField] private Material defaultOutline;
-    [SerializeField] private Material selectedOutline;
+    [SerializeField] private Material okOutline;
+    [SerializeField] private Material notOkOutline;
+    [SerializeField] private Material selectedOkOutline;
+    [SerializeField] private Material selectedNotOkOutline;
+
+    [SerializeField] private MapBase map;
 
 
     private Vector2 _selectedPos;
@@ -42,7 +47,7 @@ public class TileSelector : MonoBehaviour
     {
         if(_caseInfo != null)
         {
-            _caseInfo.SetOutline(defaultOutline);
+            _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? okOutline : notOkOutline);
         }
 
         if (pendingAction == null) return;
@@ -53,12 +58,28 @@ public class TileSelector : MonoBehaviour
         {
             _caseInfo = hit.collider.gameObject.GetComponentInParent<CaseInfo>();
             _selectedPos = _caseInfo.casePos;
-            _caseInfo.SetOutline(selectedOutline);
-            if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
+
+            
+
+            _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? selectedOkOutline : selectedNotOkOutline);
+
+            pendingAction.actionTile = _caseInfo;
+
+            if (_caseInfo.IsCasePlantable())
             {
-                pendingAction.actionTile = _caseInfo;
-                roundManager.currentPlayer.SetAction(pendingAction);
-                pendingAction = null;
+                pendingAction.Previsualize(map);
+                if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
+                {
+
+                    roundManager.currentPlayer.SetAction(pendingAction);
+                    pendingAction = null;
+                    ClearTileSelection();
+                    _caseInfo = null;
+                }
+            }
+            else
+            {
+                map.ResetTempStructure();
             }
         }
         else
@@ -68,19 +89,55 @@ public class TileSelector : MonoBehaviour
         }
     }
 
+    public void ClearTileSelection()
+    {
+        
+        List<CaseInfo> possible = new List<CaseInfo>();
+        List<CaseInfo> notPossible = new List<CaseInfo>();
+
+        map.GetPossibleCases(possible, notPossible);
+
+        foreach (CaseInfo tile in possible)
+        {
+            tile.SetOutline(defaultOutline);
+        }
+
+        foreach (CaseInfo tile in notPossible)
+        {
+            tile.SetOutline(defaultOutline);
+        }
+    }
 
     public void BeginPlantAction()
     {
+        map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Plant);
+
+        List<CaseInfo> possible = new List<CaseInfo>();
+        List<CaseInfo> notPossible = new List<CaseInfo>();
+
+        map.GetPossibleCases(possible, notPossible);
+
+        foreach(CaseInfo tile in possible)
+        {
+            tile.SetOutline(okOutline);
+        }
+
+        foreach (CaseInfo tile in notPossible)
+        {
+            tile.SetOutline(notOkOutline);
+        }
     }
 
     public void BeginAttackAction()
     {
+        map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Attack);
     }
 
     public void BeginArroserAction()
     {
+        map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Arroser);
     }
 
