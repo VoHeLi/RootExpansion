@@ -11,6 +11,8 @@ public class Tournesol : Structure
         dommageStats = new int[5] { 0, 0, 0, 0, 0 };
         plantRootRadius = 3;
     }
+
+    [ContextMenu("produce")]
     public override void ProduceRessource(Player player)
     {
         player.ressources[0] += productionStats[niveau];

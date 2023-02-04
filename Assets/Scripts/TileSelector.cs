@@ -22,6 +22,8 @@ public class TileSelector : MonoBehaviour
     private PlayerInput playerInput;
     private RoundManager roundManager;
 
+    private int selectedSeed;
+
     public Vector2 selectedPos
     {
         get
@@ -137,5 +139,10 @@ public class TileSelector : MonoBehaviour
     {
         map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Arroser);
+    }
+
+    public void changeSelectedSeed(int val)
+    {
+        selectedSeed = val;
     }
 }
