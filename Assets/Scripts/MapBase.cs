@@ -218,7 +218,7 @@ public class MapBase : MonoBehaviour
                 return;
             }
 
-            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine)
+            if (structures[node.position.x, node.position.y] != null && structures[node.position.x, node.position.y].type != StructureType.Racine && structures[node.position.x, node.position.y].player == roundManager.currentPlayer)
             {
                 break;
 
