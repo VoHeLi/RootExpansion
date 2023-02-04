@@ -44,8 +44,8 @@ public abstract class Structure : MonoBehaviour
         }
     }
 
-    public TextMeshPro lifeText;
-    public TextMeshPro levelText;
+    public TMPro.TextMeshProUGUI lifeText;
+    public TMPro.TextMeshProUGUI levelText;
     public GameObject lifeBar;
 
     public abstract void ProduceRessource(Player player); 
