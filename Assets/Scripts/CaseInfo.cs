@@ -21,11 +21,9 @@ public class CaseInfo : MonoBehaviour
         meshRenderer.materials = mats;
     }
 
-    public bool IsCasePlantable()
+    public bool IsCasePlantable(Structure plante)
     {
-
-        // CETTE FONCTION DEPEND DU TYPE DE PLANTE QUE L'ON SEME ET L'ORIGINE
-        int plantRootRadius = 3; //A CHANGER
+        int plantRootRadius = plante.plantRootRadius;
 
         int plantCount = 0;
         for(int  iOffset = plantRootRadius * -2; iOffset < plantRootRadius * 2; iOffset++ )
@@ -35,7 +33,7 @@ public class CaseInfo : MonoBehaviour
                 if((casePos.x + iOffset >= 0) && (casePos.x + iOffset < map.height) && (casePos.y + jOffset >= 0) && (casePos.y + jOffset < map.width))
                 {
                     // la case doit etre a une distance de la case
-                    if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) < plantRootRadius)
+                    if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) <= plantRootRadius)
                     {
                         if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null)
                         {
