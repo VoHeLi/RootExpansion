@@ -24,12 +24,12 @@ public class CamMovement : MonoBehaviour
 
         float yScrolling = input.actions["Zoom"].ReadValue<float>() * speed * Time.deltaTime;
         cam.fieldOfView += yScrolling * scrollingSpeed * Time.deltaTime * -1;
-        if(cam.fieldOfView<5)
+        if(cam.fieldOfView<10)
         {
             cam.fieldOfView = 5f;
         }else if(cam.fieldOfView > 80)
         {
-            cam.fieldOfView = 80;
+            cam.fieldOfView = 100;
         }
 
     }
