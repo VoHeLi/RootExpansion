@@ -137,13 +137,3 @@ public class CaseInfo : MonoBehaviour
         return x + y;
     }
 }
-
-
-
-
-
-
-
-
-
-

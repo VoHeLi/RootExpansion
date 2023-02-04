@@ -47,10 +47,16 @@ MonoBehaviour:
   tilePrefabs:
   - {fileID: 3641433491633284447, guid: 174a9582cac361340bb1834f38564d49, type: 3}
   - {fileID: 3641433491633284447, guid: 5cf7c528664de9e47ba1a612c1a5e1b8, type: 3}
+  - {fileID: 3641433491633284447, guid: ff0f3a922ff45d444960dd1a40ca48fa, type: 3}
+  - {fileID: 3641433491633284447, guid: 62c91813342733f43bb58e98016c2a23, type: 3}
+  - {fileID: 3641433491633284447, guid: fec685bc9c3af374794a397c7d1377b7, type: 3}
+  - {fileID: 3641433491633284447, guid: 84f90e0f2a1c0c941a1dc22f6885105b, type: 3}
   structurePrefabs:
   - {fileID: 5258902564824898554, guid: d666f3559ecb15a4e861e3a624d83ae0, type: 3}
   offset: {x: 0, y: 0, z: 0}
   width: 40
   height: 40
   space: 2
-  tileSelector: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+  roundManager: {fileID: 0}
+  blueTeamOutline: {fileID: 0}
+  redTeamOutline: {fileID: 0}
