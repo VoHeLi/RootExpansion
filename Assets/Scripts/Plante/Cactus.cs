@@ -13,7 +13,7 @@ public class Cactus : Structure
     }
     public override void ProduceRessource(Player player)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     [ContextMenu("attaque")]
