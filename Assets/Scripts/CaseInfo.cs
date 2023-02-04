@@ -21,9 +21,9 @@ public class CaseInfo : MonoBehaviour
         meshRenderer.materials = mats;
     }
 
-    public bool IsCasePlantable(Structure plante)
+    public bool IsCasePlantable()
     {
-        int plantRootRadius = plante.plantRootRadius;
+        int plantRootRadius = 3;
 
         int plantCount = 0;
         for(int  iOffset = plantRootRadius * -2; iOffset < plantRootRadius * 2; iOffset++ )

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Structure : MonoBehaviour
 {
+    public MapBase.StructureType type;
     public Vector2Int position;
     public int joueurId;
     public int niveau;
