@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RoundManager : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class RoundManager : MonoBehaviour
 
     public Player[] players;
 
+    public TextMeshProUGUI waterCount;
+
+    public TextMeshProUGUI turnCount;
+    private int nbTurn = 1;
+    private int nbTurnMax;
 
     public Player currentPlayer;
 
@@ -24,7 +30,7 @@ public class RoundManager : MonoBehaviour
         {
             players[i] = Instantiate(playerPrefab).GetComponent<Player>();
             players[i].map = map;
-            
+            players[i].waterCount = waterCount;
         }
         currentPlayer = players[0];
     }
@@ -39,11 +45,13 @@ public class RoundManager : MonoBehaviour
     {
         while (true)
         {
-            foreach(Player player in players)
+            foreach (Player player in players)
             {
                 currentPlayer = player;
+                turnCount.text = "Tour " + nbTurn.ToString() + " | " + currentPlayer.getName();
                 yield return player.StartTurn();
             }
+            nbTurn++;
         }
     }
 }

@@ -14,7 +14,8 @@ public class Tournesol : Structure
     [ContextMenu("produce")]
     public override void ProduceRessource(Player player)
     {
-        player.ressources[0] += productionStats[niveau];
+        player.ressources[(int)Player.Ressources.Eau] += productionStats[niveau];
+        player.updateRessources();
     }
 
     public override void Action(Player player)
