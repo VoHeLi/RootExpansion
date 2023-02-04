@@ -22,7 +22,7 @@ public class TileSelector : MonoBehaviour
     private PlayerInput playerInput;
     private RoundManager roundManager;
 
-    private int selectedSeed;
+    private MapBase.StructureType planteID;
 
     public Vector2 selectedPos
     {
@@ -47,7 +47,7 @@ public class TileSelector : MonoBehaviour
     {
         if(_caseInfo != null)
         {
-            _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? okOutline : notOkOutline);
+            _caseInfo.SetOutline(_caseInfo.IsCasePlantable(planteID) ? okOutline : notOkOutline);
         }
 
         if (pendingAction == null) return;
@@ -61,11 +61,11 @@ public class TileSelector : MonoBehaviour
 
             
 
-            _caseInfo.SetOutline(_caseInfo.IsCasePlantable() ? selectedOkOutline : selectedNotOkOutline);
+            _caseInfo.SetOutline(_caseInfo.IsCasePlantable(planteID) ? selectedOkOutline : selectedNotOkOutline);
 
             pendingAction.actionTile = _caseInfo;
 
-            if (_caseInfo.IsCasePlantable())
+            if (_caseInfo.IsCasePlantable(planteID))
             {
                 pendingAction.Previsualize(map);
                 if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
@@ -141,8 +141,13 @@ public class TileSelector : MonoBehaviour
         pendingAction = new Action(Action.ActionType.Arroser);
     }
 
-    public void changeSelectedSeed(int val)
+    public void changeSelectedPlant(MapBase.StructureType newPlantID)
     {
-        selectedSeed = val;
+        planteID = newPlantID;
+    }
+
+    public MapBase.StructureType getPlantID()
+    {
+        return planteID;
     }
 }

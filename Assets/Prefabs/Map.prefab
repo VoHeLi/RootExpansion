@@ -53,3 +53,4 @@ MonoBehaviour:
   width: 40
   height: 40
   space: 2
+  tileSelector: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}

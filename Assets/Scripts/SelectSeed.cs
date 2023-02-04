@@ -6,16 +6,14 @@ using TMPro;
 public class SelectSeed : MonoBehaviour
 {
     public TileSelector tileSelector;
-    public TMP_Dropdown dropDownStart;
 
-    void start()
+    public void OnValueChange(TMP_Dropdown dropdown)
     {
-        tileSelector.changeSelectedSeed(dropDownStart.value);
-    }
-
-    public void OnDropDownChanged(TMP_Dropdown dropDown)
-    {
-        UnityEngine.Debug.Log(dropDown.value);
-        tileSelector.changeSelectedSeed(dropDown.value);
+        switch (dropdown.value)
+        {
+            case 0:
+                tileSelector.changeSelectedPlant(MapBase.StructureType.Tournesol);
+                break;
+        }
     }
 }
