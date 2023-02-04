@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Action action = null;
     public MapBase map;
     public int[] ressources = new int[1] {0};
+    public int[] seeds = new int[4];
 
 
     public IEnumerator StartTurn()

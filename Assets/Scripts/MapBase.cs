@@ -24,7 +24,11 @@ public class MapBase : MonoBehaviour
     public enum StructureType : int
     {
         Pousse = 0,
-        Racine = 1
+        Racine = 1,
+        Tournesol = 2,
+        Carnivore = 3,
+        Lierre = 4,
+        Cactus = 5
     }
 
     public TileType[,] tiles;

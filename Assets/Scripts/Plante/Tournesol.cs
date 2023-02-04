@@ -9,7 +9,6 @@ public class Tournesol : Structure
         productionStats = new int[5] { 1, 1, 2, 2, 3 };
         pvStats = new int[5] { 10, 20, 20, 35, 35 };
         dommageStats = new int[5] { 0, 0, 0, 0, 0 };
-        plantRootRadius = 3;
     }
 
     [ContextMenu("produce")]
