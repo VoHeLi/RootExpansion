@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6d522b8256e9bb348a8aa1d41fe0cae1
+guid: 0b9830772ddd5154687f875f6a9ba797
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 1e31b67847d7a524981d2e1af983920c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: bcbd5a2b2e88e8047871650b63fbaaad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 6dc0c4f513bf2224eb6229b06f28df5a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Projectile
-    second: {fileID: 2100000, guid: 459f81663ef074845bd15a08dd450228, type: 2}
+      name: Branche
+    second: {fileID: 2100000, guid: 00d1489b9a1bdd147b4379c41c27d85c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -88,13 +73,13 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 78
-    normalImportMode: 1
+    normalSmoothAngle: 180
+    normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 2
+    normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
+    normalSmoothingSource: 2
   referencedClips: []
   importAnimation: 1
   humanDescription:

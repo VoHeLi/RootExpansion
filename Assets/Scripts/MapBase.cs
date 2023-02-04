@@ -9,11 +9,12 @@ public class MapBase : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] public int width;
     [SerializeField] public int height;
+    [SerializeField] public int onlyGrassMargin = 5;
     [SerializeField] private float space;
     [SerializeField] public RoundManager roundManager;
 
-    [SerializeField] private Material blueTeamOutline;
-    [SerializeField] private Material redTeamOutline;
+    [SerializeField] public Material blueTeamOutline;
+    [SerializeField] public Material redTeamOutline;
 
     private float noiseSpacing = 5f;
 
@@ -155,13 +156,13 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type)
+    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type, Action.ActionType actionType)
     {
         for(int i = 0; i < width; i++)
         {
             for(int j = 0; j < height; j++)
             {
-                (tilesInfos[i, j].IsCasePlantable(type) ? possible : notPossible).Add(tilesInfos[i, j]);
+                (tilesInfos[i, j].IsCaseUsable(type, actionType) ? possible : notPossible).Add(tilesInfos[i, j]);
             }
         }
     }
