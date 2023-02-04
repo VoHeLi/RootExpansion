@@ -132,6 +132,8 @@ public class TileSelector : MonoBehaviour
                 break;
         }
 
+        Debug.Log("Looking for action : " + planteID);
+
         List<CaseInfo> possible = new List<CaseInfo>();
         List<CaseInfo> notPossible = new List<CaseInfo>();
 
@@ -162,7 +164,12 @@ public class TileSelector : MonoBehaviour
 
     public void changeSelectedPlant(MapBase.StructureType newPlantID)
     {
-        planteID = newPlantID;
+        Debug.Log(newPlantID);
+        this.planteID = newPlantID;
+        pendingAction = null;
+        map.ResetTempStructure();
+        ClearTileSelection();
+        
     }
 
     public MapBase.StructureType getPlantID()
