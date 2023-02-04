@@ -26,7 +26,7 @@ public class Action
         switch (actionType)
         {
             case ActionType.Plant:
-                Plant()
+                Plant();
                 break;
         }
     }
