@@ -23,6 +23,7 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCasePlantable(MapBase.StructureType planteID)
     {
+        Debug.Log(planteID);
         int[] plantRootRadiusArray = new int[6] { 3, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 

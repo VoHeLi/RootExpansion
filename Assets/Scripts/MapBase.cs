@@ -14,8 +14,6 @@ public class MapBase : MonoBehaviour
 
     private float noiseSpacing = 5f;
 
-    public TileSelector tileSelector;
-
 
     public enum TileType : int
     {
@@ -153,13 +151,13 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible)
+    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type)
     {
         for(int i = 0; i < width; i++)
         {
             for(int j = 0; j < height; j++)
             {
-                (tilesInfos[i, j].IsCasePlantable(tileSelector.getPlantID()) ? possible : notPossible).Add(tilesInfos[i, j]);
+                (tilesInfos[i, j].IsCasePlantable(type) ? possible : notPossible).Add(tilesInfos[i, j]);
             }
         }
     }

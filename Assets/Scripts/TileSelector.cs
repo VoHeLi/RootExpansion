@@ -95,7 +95,7 @@ public class TileSelector : MonoBehaviour
         List<CaseInfo> possible = new List<CaseInfo>();
         List<CaseInfo> notPossible = new List<CaseInfo>();
 
-        map.GetPossibleCases(possible, notPossible);
+        map.GetPossibleCases(possible, notPossible, planteID);
 
         foreach (CaseInfo tile in possible)
         {
@@ -132,12 +132,11 @@ public class TileSelector : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Looking for action : " + planteID);
 
         List<CaseInfo> possible = new List<CaseInfo>();
         List<CaseInfo> notPossible = new List<CaseInfo>();
 
-        map.GetPossibleCases(possible, notPossible);
+        map.GetPossibleCases(possible, notPossible, planteID);
 
         foreach(CaseInfo tile in possible)
         {
@@ -164,7 +163,6 @@ public class TileSelector : MonoBehaviour
 
     public void changeSelectedPlant(MapBase.StructureType newPlantID)
     {
-        Debug.Log(newPlantID);
         this.planteID = newPlantID;
         pendingAction = null;
         map.ResetTempStructure();
