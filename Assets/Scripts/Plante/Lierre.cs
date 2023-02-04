@@ -17,7 +17,7 @@ public class Lierre : Structure
     }
 
 
-    public override void Action(Player player)
+    public override void Action()
     {
         List<Structure> Attackable = new();
 
@@ -30,13 +30,15 @@ public class Lierre : Structure
                     // la case doit etre a une distance de la case
                     if (GetTileDistance(new Vector2Int(position.x + iOffset, position.y + jOffset)) <= attackRange)
                     {
-                        if (map.structures[position.x + iOffset, position.y + jOffset] != null
-                            && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
-                            && (map.structures[position.x + iOffset, position.y + jOffset].player == map.roundManager.currentPlayer))
+                        if (map.structures[position.x + iOffset, position.y + jOffset].player != player)
                         {
-                            Attackable.Add(map.structures[position.x + iOffset, position.y + jOffset]);
+                            if (map.structures[position.x + iOffset, position.y + jOffset] != null
+                                && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
+                                && (map.structures[position.x + iOffset, position.y + jOffset].player == map.roundManager.currentPlayer))
+                            {
+                                Attackable.Add(map.structures[position.x + iOffset, position.y + jOffset]);
+                            }
                         }
-
                     }
                 }
             }
@@ -50,7 +52,10 @@ public class Lierre : Structure
             Attackable.Remove(plant);
         }
 
-        /// MTN JUSTE A FAIRE DES DEGATS AUX PLANTES DANS ATTACKED
+        foreach (Structure plant in Attacked)
+        {
+            plant.hurt(dommageStats[niveau]);
+        }
     }
 
     // Start is called before the first frame update

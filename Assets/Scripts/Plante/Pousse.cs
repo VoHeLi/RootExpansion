@@ -15,7 +15,7 @@ public class Pousse : Structure
         throw new System.NotImplementedException();
     }
 
-    public override void Action(Player player)
+    public override void Action()
     {
         throw new System.NotImplementedException();
     }

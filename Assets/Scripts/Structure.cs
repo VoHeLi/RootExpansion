@@ -58,7 +58,8 @@ public abstract class Structure : MonoBehaviour
             niveau++;
         }
     }
-    public abstract void Action(Player player);
+
+    public abstract void Action();
     public int GetTileDistance(Vector2Int case2Pos)
     {
         int aX1 = position.x;
@@ -97,5 +98,15 @@ public abstract class Structure : MonoBehaviour
 
         return Closests[Random.Range(0, Closests.Count)];
 
+    }
+
+    public void hurt(int dommage)
+    {
+        life -= dommage;
+    }
+
+    private void Start()
+    {
+        map = GameObject.Find("map").GetComponent<MapBase>();
     }
 }
