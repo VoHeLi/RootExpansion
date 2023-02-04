@@ -35,7 +35,7 @@ public abstract class Structure : MonoBehaviour
     {
         get
         {
-            return _niveau;
+            return _life;
         }
         set
         {
@@ -95,18 +95,21 @@ public abstract class Structure : MonoBehaviour
                 Closests.Add(structure);
             }
         }
-
-        return Closests[Random.Range(0, Closests.Count)];
+        if (Closests.Count == 0) { return null; }
+        return Closests[Random.Range(0, Closests.Count-1)];
 
     }
-
+    
     public void hurt(int dommage)
     {
+        Debug.Log(life);
         life -= dommage;
+        if (life < 0) { life = 0; }
     }
 
-    private void Start()
+    public void Start()
     {
-        map = GameObject.Find("map").GetComponent<MapBase>();
+        map = GameObject.Find("Map").GetComponent<MapBase>();
+        life = pvStats[0];
     }
 }
