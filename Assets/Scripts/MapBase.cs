@@ -12,6 +12,9 @@ public class MapBase : MonoBehaviour
     [SerializeField] private float space;
     [SerializeField] public RoundManager roundManager;
 
+    [SerializeField] private Material blueTeamOutline;
+    [SerializeField] private Material redTeamOutline;
+
     private float noiseSpacing = 5f;
 
 
@@ -76,9 +79,8 @@ public class MapBase : MonoBehaviour
             }
         }
 
-
         ReplaceStructure(Vector2Int.zero, StructureType.Pousse, roundManager.players[0]);
-        ReplaceStructure(Vector2Int.right * 10, StructureType.Pousse, roundManager.players[1]);
+        ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
     }
 
     private Vector3 GetRealPosition(Vector2Int position)
@@ -106,6 +108,7 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
         structures[position.x, position.y].player = player;
+        tilesInfos[position.x, position.y].SetOutline(roundManager.currentPlayer == roundManager.players[0] ? blueTeamOutline : redTeamOutline);
     }
 
     private Structure hiddenStructure;

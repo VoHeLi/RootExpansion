@@ -593,6 +593,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6406144}
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: redTeamOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c71634d2f91f8a418fbfe769fcc6783, type: 2}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: blueTeamOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: structurePrefabs.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -619,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: structurePrefabs.Array.data[5]
       value: 
-      objectReference: {fileID: 4864541349362158220, guid: f208694dd8ba6764a8b94cf2e933bfe2, type: 3}
+      objectReference: {fileID: 506946980678677595, guid: 3c0df03290976754692b2a8cee7c6281, type: 3}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder
       value: 1

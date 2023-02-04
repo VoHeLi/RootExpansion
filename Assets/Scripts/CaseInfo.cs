@@ -9,13 +9,14 @@ public class CaseInfo : MonoBehaviour
     private MeshRenderer meshRenderer;
     public MapBase map;
 
-    public void Start()
+    public void Awake()
     {
         meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     public void SetOutline(Material material)
     {
+
         Material[] mats = meshRenderer.sharedMaterials;
         mats[1] = material;
         meshRenderer.materials = mats;
@@ -28,6 +29,8 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCasePlantable(MapBase.StructureType planteID)
     {
+        if (map.structures[casePos.x, casePos.y] != null) return false; 
+
         int[] plantRootRadiusArray = new int[6] { 3, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 

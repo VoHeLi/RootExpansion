@@ -11,6 +11,7 @@ public class TileSelector : MonoBehaviour
     [SerializeField] private Material selectedOkOutline;
     [SerializeField] private Material selectedNotOkOutline;
 
+
     [SerializeField] public MapBase map;
 
 
@@ -50,7 +51,8 @@ public class TileSelector : MonoBehaviour
 
         if (_caseInfo != null)
         {
-            _caseInfo.SetOutline(_caseInfo.IsCaseUsable(planteID, pendingAction.actionType) ? okOutline : notOkOutline);
+            if (map.structures[_caseInfo.casePos.x, _caseInfo.casePos.y] == null)
+                _caseInfo.SetOutline(_caseInfo.IsCaseUsable(planteID, pendingAction.actionType) ? okOutline : notOkOutline);
         }
 
         
@@ -62,9 +64,9 @@ public class TileSelector : MonoBehaviour
             _caseInfo = hit.collider.gameObject.GetComponentInParent<CaseInfo>();
             _selectedPos = _caseInfo.casePos;
 
-            
 
-            _caseInfo.SetOutline(_caseInfo.IsCaseUsable(planteID, pendingAction.actionType) ? selectedOkOutline : selectedNotOkOutline);
+            if (map.structures[_caseInfo.casePos.x, _caseInfo.casePos.y] == null)
+                _caseInfo.SetOutline(_caseInfo.IsCaseUsable(planteID, pendingAction.actionType) ? selectedOkOutline : selectedNotOkOutline);
 
             pendingAction.actionTile = _caseInfo;
 
@@ -102,12 +104,19 @@ public class TileSelector : MonoBehaviour
 
         foreach (CaseInfo tile in possible)
         {
-            tile.SetOutline(defaultOutline);
+            if (map.structures[tile.casePos.x, tile.casePos.y] == null)
+            {
+                tile.SetOutline(defaultOutline);
+            }
+            
         }
 
         foreach (CaseInfo tile in notPossible)
         {
-            tile.SetOutline(defaultOutline);
+            if (map.structures[tile.casePos.x, tile.casePos.y] == null)
+            {
+                tile.SetOutline(defaultOutline);
+            }
         }
     }
 
@@ -148,7 +157,7 @@ public class TileSelector : MonoBehaviour
 
         foreach (CaseInfo tile in notPossible)
         {
-            tile.SetOutline(notOkOutline);
+            //tile.SetOutline(notOkOutline);
         }
     }
 
