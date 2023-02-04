@@ -136,7 +136,7 @@ public class CaseInfo : MonoBehaviour
 
         return neightbours;
     }
-    private int pathLength(Vector2Int position)
+    int pathLength(Vector2Int position)
     {
         int pathLength = 0; 
         bool[,] traveled = new bool[map.width, map.height];
