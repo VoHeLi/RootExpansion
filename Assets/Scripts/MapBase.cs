@@ -24,12 +24,15 @@ public class MapBase : MonoBehaviour
     public TileType[,] tiles;
 
     private GameObject[,] tilesObject;
-    [SerializeField]private Structure[,] structures;
+    private CaseInfo[,] tilesInfos;
+
+    private Structure[,] structures;
 
     private void Awake()
     {
         tiles = new TileType[width,height];
         tilesObject = new GameObject[width, height];
+        tilesInfos = new CaseInfo[width, height];
         structures = new Structure[width, height];
     }
 
@@ -57,8 +60,9 @@ public class MapBase : MonoBehaviour
                 tilesObject[i, j] = Instantiate(tilePrefabs[(int)tiles[i, j]]);
                 tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f) ;
                 tilesObject[i, j].transform.parent = transform;
-                tilesObject[i, j].GetComponent<CaseInfo>().casePos = new Vector2Int(i, j);
-                tilesObject[i, j].GetComponent<CaseInfo>().map = this;
+                tilesInfos[i, j] = tilesObject[i, j].GetComponent<CaseInfo>();
+                tilesInfos[i, j].casePos = new Vector2Int(i, j);
+                tilesInfos[i, j].map = this;
             }
         }
     }
@@ -82,5 +86,16 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y] = structureObject.GetComponent<Structure>();
         structures[position.x, position.y].position = position;
 
+    }
+
+    public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible)
+    {
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                (tilesInfos[i, j].IsCasePlantable() ? possible : notPossible).Add(tilesInfos[i, j]);
+            }
+        }
     }
 }
