@@ -27,20 +27,30 @@ public class CaseInfo : MonoBehaviour
         Vector2Int originPos = new Vector2Int(0, 0); //A CHANGER
         int plantRootRadius = 3; //A CHANGER
 
-
-        // la case doit etre a une distance de la case
-        if (GetTileDistance(originPos) > plantRootRadius)
+        int plantCount = 0;
+        for(int  iOffset = plantRootRadius * -2; iOffset < plantRootRadius * 2; iOffset++ )
         {
-            return false;
+            for (int jOffset = plantRootRadius * -2; jOffset < plantRootRadius * 2; jOffset++)
+            {
+                if((casePos.x + iOffset >= 0) && (casePos.x + iOffset <= map.height) && (casePos.y + jOffset >= 0) && (casePos.y + jOffset <= map.width))
+                {
+                    // la case doit etre a une distance de la case
+                    if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) < plantRootRadius)
+                    {
+                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null)
+                        {
+                            plantCount++;
+                        }
+                    }
+                }
+            }
         }
-
+        if (plantCount <= 0) { return false; }
         // la case doit etre de type grass
         if (map.tiles[casePos.x, casePos.y] != 0)
         {
             return false;
         }
-
-
         return true;
 
     }

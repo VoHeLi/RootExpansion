@@ -7,8 +7,8 @@ public class MapBase : MonoBehaviour
     [SerializeField] private GameObject[] tilePrefabs;
     [SerializeField] private GameObject[] structurePrefabs;
     [SerializeField] private Vector3 offset;
-    [SerializeField] private int width;
-    [SerializeField] private int height;
+    [SerializeField] public int width;
+    [SerializeField] public int height;
     [SerializeField] private float space;
 
 
@@ -26,7 +26,7 @@ public class MapBase : MonoBehaviour
     private GameObject[,] tilesObject;
     private CaseInfo[,] tilesInfos;
 
-    private Structure[,] structures;
+    public Structure[,] structures;
 
     private void Awake()
     {
