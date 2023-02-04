@@ -100,13 +100,17 @@ public class TileSelector : MonoBehaviour
         List<CaseInfo> possible = new List<CaseInfo>();
         List<CaseInfo> notPossible = new List<CaseInfo>();
 
-        map.GetPossibleCases(possible, notPossible, planteID);
+        map.GetPossibleCases(possible, notPossible, planteID, Action.ActionType.Pass);
 
         foreach (CaseInfo tile in possible)
         {
             if (map.structures[tile.casePos.x, tile.casePos.y] == null)
             {
                 tile.SetOutline(defaultOutline);
+            }
+            else
+            {
+                tile.SetOutline(map.structures[tile.casePos.x, tile.casePos.y].player == map.roundManager.players[0] ? map.blueTeamOutline : map.redTeamOutline);
             }
             
         }
@@ -116,6 +120,10 @@ public class TileSelector : MonoBehaviour
             if (map.structures[tile.casePos.x, tile.casePos.y] == null)
             {
                 tile.SetOutline(defaultOutline);
+            }
+            else
+            {
+                tile.SetOutline(map.structures[tile.casePos.x, tile.casePos.y].player == map.roundManager.players[0] ? map.blueTeamOutline : map.redTeamOutline);
             }
         }
     }
@@ -148,7 +156,7 @@ public class TileSelector : MonoBehaviour
         List<CaseInfo> possible = new List<CaseInfo>();
         List<CaseInfo> notPossible = new List<CaseInfo>();
 
-        map.GetPossibleCases(possible, notPossible, planteID);
+        map.GetPossibleCases(possible, notPossible, planteID, pendingAction.actionType);
 
         foreach(CaseInfo tile in possible)
         {
@@ -165,12 +173,42 @@ public class TileSelector : MonoBehaviour
     {
         map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Attack);
+
+        List<CaseInfo> possible = new List<CaseInfo>();
+        List<CaseInfo> notPossible = new List<CaseInfo>();
+
+        map.GetPossibleCases(possible, notPossible, planteID, Action.ActionType.Attack);
+
+        foreach (CaseInfo tile in possible)
+        {
+            tile.SetOutline(okOutline);
+        }
+
+        foreach (CaseInfo tile in notPossible)
+        {
+            //tile.SetOutline(notOkOutline);
+        }
     }
 
     public void BeginArroserAction()
     {
         map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Arroser);
+
+        List<CaseInfo> possible = new List<CaseInfo>();
+        List<CaseInfo> notPossible = new List<CaseInfo>();
+
+        map.GetPossibleCases(possible, notPossible, planteID, Action.ActionType.Arroser);
+
+        foreach (CaseInfo tile in possible)
+        {
+            tile.SetOutline(okOutline);
+        }
+
+        foreach (CaseInfo tile in notPossible)
+        {
+            //tile.SetOutline(notOkOutline);
+        }
     }
 
     public void changeSelectedPlant(MapBase.StructureType newPlantID)
