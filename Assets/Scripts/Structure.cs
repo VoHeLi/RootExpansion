@@ -10,7 +10,6 @@ public abstract class Structure : MonoBehaviour
     public int[] productionStats;
     public int[] pvStats;
     public int[] dommageStats;
-    public int plantRootRadius;
 
     public abstract void ProduceRessource(Player player);
     public abstract void Arroser(Player player);
