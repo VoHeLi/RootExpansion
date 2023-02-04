@@ -655,8 +655,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1050580814}
+    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+      propertyPath: okOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: 7adf6333d3483d347874233008588634, type: 2}
+    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+      propertyPath: notOkOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: e4c5c57faca167340b8e0917681b082b, type: 2}
+    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
       propertyPath: selectedOutline
       value: 
       objectReference: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
+    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+      propertyPath: selectedOkOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
+    - target: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
+      propertyPath: selectedNotOkOutline
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c71634d2f91f8a418fbfe769fcc6783, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
