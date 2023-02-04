@@ -66,14 +66,18 @@ public class TileSelector : MonoBehaviour
             if (_caseInfo.IsCasePlantable())
             {
                 pendingAction.Previsualize(map);
-            }
-            
+                if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
+                {
 
-            if (playerInput.actions["Click"].ReadValue<float>() >= 0.5f)
+                    roundManager.currentPlayer.SetAction(pendingAction);
+                    pendingAction = null;
+                    ClearTileSelection();
+                    _caseInfo = null;
+                }
+            }
+            else
             {
-                
-                roundManager.currentPlayer.SetAction(pendingAction);
-                pendingAction = null;
+                map.ResetTempStructure();
             }
         }
         else
@@ -83,6 +87,24 @@ public class TileSelector : MonoBehaviour
         }
     }
 
+    public void ClearTileSelection()
+    {
+        
+        List<CaseInfo> possible = new List<CaseInfo>();
+        List<CaseInfo> notPossible = new List<CaseInfo>();
+
+        map.GetPossibleCases(possible, notPossible);
+
+        foreach (CaseInfo tile in possible)
+        {
+            tile.SetOutline(defaultOutline);
+        }
+
+        foreach (CaseInfo tile in notPossible)
+        {
+            tile.SetOutline(defaultOutline);
+        }
+    }
 
     public void BeginPlantAction()
     {
