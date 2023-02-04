@@ -10,6 +10,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private Vector2Int[] playerNames;
     [SerializeField] private Vector2Int[] playerColor;
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private MapBase map;
 
     private Player[] players;
 
@@ -22,6 +23,7 @@ public class RoundManager : MonoBehaviour
         for(int i = 0; i < playerCount; i++)
         {
             players[i] = Instantiate(playerPrefab).GetComponent<Player>();
+            players[i].map = map;
             
         }
         currentPlayer = players[0];

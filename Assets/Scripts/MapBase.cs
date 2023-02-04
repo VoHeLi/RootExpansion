@@ -5,10 +5,13 @@ using UnityEngine;
 public class MapBase : MonoBehaviour
 {
     [SerializeField] private GameObject[] tilePrefabs;
+    [SerializeField] private GameObject[] structurePrefabs;
     [SerializeField] private Vector3 offset;
     [SerializeField] private int width;
     [SerializeField] private int height;
     [SerializeField] private float space;
+
+
     private float noiseSpacing = 5f;
 
 
@@ -21,11 +24,13 @@ public class MapBase : MonoBehaviour
     private TileType[,] tiles;
 
     private GameObject[,] tilesObject;
+    [SerializeField]private Structure[,] structures;
 
     private void Awake()
     {
         tiles = new TileType[width,height];
         tilesObject = new GameObject[width, height];
+        structures = new Structure[width, height];
     }
 
     private void Start()
@@ -57,9 +62,24 @@ public class MapBase : MonoBehaviour
         }
     }
 
-    
-    void Update()
+    private Vector3 GetRealPosition(Vector2Int position)
     {
-        
+        return tilesObject[position.x, position.y].transform.position;
+    }
+    
+    public void ReplaceStructure(Vector2Int position)
+    {
+        if(structures[position.x, position.y] != null)
+        {
+            Destroy(structures[position.x, position.y].gameObject);
+            Debug.Log("Destroy!!!");
+        }
+
+        GameObject structureObject = Instantiate(structurePrefabs[0]);
+        structureObject.transform.position = GetRealPosition(position);
+        structureObject.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+        structures[position.x, position.y] = structureObject.GetComponent<Structure>();
+        structures[position.x, position.y].position = position;
+
     }
 }
