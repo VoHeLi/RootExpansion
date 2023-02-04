@@ -25,7 +25,6 @@ public class CaseInfo : MonoBehaviour
     {
 
         // CETTE FONCTION DEPEND DU TYPE DE PLANTE QUE L'ON SEME ET L'ORIGINE
-        Vector2Int originPos = new Vector2Int(0, 0); //A CHANGER
         int plantRootRadius = 3; //A CHANGER
 
         int plantCount = 0;
