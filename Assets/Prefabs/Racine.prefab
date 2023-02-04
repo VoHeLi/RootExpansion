@@ -47,12 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   position: {x: 0, y: 0}
+  map: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
   player: {fileID: 0}
-  niveau: 0
   productionStats: 
   pvStats: 
   dommageStats: 
   attackRange: 0
+  lifeText: {fileID: 0}
+  levelText: {fileID: 0}
+  lifeBar: {fileID: 0}
 --- !u!1001 &4864541348879438764
 PrefabInstance:
   m_ObjectHideFlags: 0

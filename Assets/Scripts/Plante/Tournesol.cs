@@ -18,7 +18,7 @@ public class Tournesol : Structure
         player.updateRessources();
     }
 
-    public override void Action(Player player)
+    public override void Action()
     {
         throw new System.NotImplementedException();
     }

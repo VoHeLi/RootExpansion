@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   position: {x: 0, y: 0}
+  map: {fileID: 0}
   player: {fileID: 0}
   productionStats: 0000000000000000000000000000000000000000
   pvStats: 0f00000019000000190000002800000028000000

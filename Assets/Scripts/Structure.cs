@@ -10,6 +10,7 @@ public abstract class Structure : MonoBehaviour
 
     public MapBase.StructureType type;
     public Vector2Int position;
+    public MapBase map;
     public Player player;
     public int[] productionStats;
     public int[] pvStats;
@@ -57,7 +58,55 @@ public abstract class Structure : MonoBehaviour
             niveau++;
         }
     }
-    public abstract void Action(Player player);
 
+    public abstract void Action();
+    public int GetTileDistance(Vector2Int case2Pos)
+    {
+        int aX1 = position.x;
+        int aY1 = position.y;
+        int aX2 = case2Pos.x;
+        int aY2 = case2Pos.y;
+        int dx = aX2 - aX1;     // signed deltas
+        int dy = aY2 - aY1;
+        int x = Mathf.Abs(dx);  // absolute deltas
+        int y = Mathf.Abs(dy);
+        // special case if we start on an odd row or if we move into negative x direction
+        if ((dx < 0) ^ ((aY1 & 1) == 1))
+            x = Mathf.Max(0, x - (y + 1) / 2);
+        else
+            x = Mathf.Max(0, x - (y) / 2);
+        return x + y;
+    }
+    public Structure findClosest(List<Structure> structures)
+    {
+        List<Structure> Closests = new();
+        int min = 100;
+        foreach (Structure structure in structures)
+        {
+            int dist = GetTileDistance(structure.position);
+            if (dist < min)
+            {
+                min = dist;
+                Closests.Clear();
+                Closests.Add(structure);
+            }
+            else if (dist == min)
+            {
+                Closests.Add(structure);
+            }
+        }
 
+        return Closests[Random.Range(0, Closests.Count)];
+
+    }
+
+    public void hurt(int dommage)
+    {
+        life -= dommage;
+    }
+
+    private void Start()
+    {
+        map = GameObject.Find("map").GetComponent<MapBase>();
+    }
 }
