@@ -9,11 +9,6 @@ public class Racine : Structure
         throw new System.NotImplementedException();
     }
 
-    public override void Arroser(Player player)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void ProduceRessource(Player player)
     {
         throw new System.NotImplementedException();

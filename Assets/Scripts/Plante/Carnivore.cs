@@ -15,11 +15,6 @@ public class Carnivore : Structure
         throw new System.NotImplementedException();
     }
 
-    public override void Arroser(Player player)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void Action(Player player)
     {
         throw new System.NotImplementedException();

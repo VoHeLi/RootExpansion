@@ -12,8 +12,15 @@ public abstract class Structure : MonoBehaviour
     public int[] pvStats;
     public int[] dommageStats;
 
-    public abstract void ProduceRessource(Player player);
-    public abstract void Arroser(Player player);
+    public abstract void ProduceRessource(Player player); 
+    public void Arroser(Player player)
+    {
+        if ((niveau<3)&&(player.ressources[0] >= Mathf.Pow(2, niveau + 1)))
+        {
+            player.ressources[0] -= (int)Mathf.Pow(2, niveau + 1);
+            niveau++;
+        }
+    }
     public abstract void Action(Player player);
 
 
