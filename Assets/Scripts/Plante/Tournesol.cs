@@ -17,11 +17,6 @@ public class Tournesol : Structure
         player.ressources[0] += productionStats[niveau];
     }
 
-    public override void Arroser(Player player)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void Action(Player player)
     {
         throw new System.NotImplementedException();
