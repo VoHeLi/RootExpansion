@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private Color playerColor = Color.white;
 
     private Action action = null;
+    public MapBase map;
 
 
     public IEnumerator StartTurn()
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
 
         Debug.Log(action.actionType + " : " + action.actionTile.casePos);
 
-        action.Execute();
+        action.Execute(map);
 
         action = null;
     }

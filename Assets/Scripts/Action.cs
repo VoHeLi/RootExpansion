@@ -21,18 +21,13 @@ public class Action
         actionType = action;
     }
 
-    public void Execute()
+    public void Execute(MapBase map)
     {
         switch (actionType)
         {
             case ActionType.Plant:
-                Plant();
+                map.ReplaceStructure(actionTile.casePos);
                 break;
         }
-    }
-
-    private void Plant()
-    {
-
     }
 }
