@@ -7,6 +7,7 @@ public class CaseInfo : MonoBehaviour
     public Vector2Int casePos;
 
     private MeshRenderer meshRenderer;
+    public MapBase map;
 
     public void Start()
     {
@@ -19,6 +20,13 @@ public class CaseInfo : MonoBehaviour
         mats[1] = material;
         meshRenderer.materials = mats;
     }
+
+    bool isBasePlantable()
+    {
+        return true;
+
+    }
+
 
     int GetTileDistance(Vector2Int case2Pos)
     {

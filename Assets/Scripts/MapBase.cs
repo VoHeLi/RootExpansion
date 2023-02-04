@@ -58,6 +58,7 @@ public class MapBase : MonoBehaviour
                 tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f) ;
                 tilesObject[i, j].transform.parent = transform;
                 tilesObject[i, j].GetComponent<CaseInfo>().casePos = new Vector2Int(i, j);
+                tilesObject[i, j].GetComponent<CaseInfo>().map = this;
             }
         }
     }
