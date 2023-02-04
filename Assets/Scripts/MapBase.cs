@@ -21,7 +21,7 @@ public class MapBase : MonoBehaviour
         Field = 1
     }
 
-    private TileType[,] tiles;
+    public TileType[,] tiles;
 
     private GameObject[,] tilesObject;
     [SerializeField]private Structure[,] structures;
