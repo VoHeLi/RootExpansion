@@ -21,7 +21,7 @@ public class CaseInfo : MonoBehaviour
         meshRenderer.materials = mats;
     }
 
-    bool isBasePlantable()
+    bool IsCasePlantable()
     {
         return true;
 
