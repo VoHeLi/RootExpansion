@@ -16,6 +16,7 @@ public class Carnivore : Structure
         throw new System.NotImplementedException();
     }
 
+    [ContextMenu("attaque")]
     public override void Action()
     {
         List<Structure> Attackable = new();
@@ -29,7 +30,7 @@ public class Carnivore : Structure
                     // la case doit etre a une distance de la case
                     if (GetTileDistance(new Vector2Int(position.x + iOffset, position.y + jOffset)) <= attackRange)
                     {
-                        if (map.structures[position.x + iOffset, position.y + jOffset].player != player)
+                        if ((map.structures[position.x + iOffset, position.y + jOffset] != null) && (map.structures[position.x + iOffset, position.y + jOffset].player != player))
                         {
                             if (map.structures[position.x + iOffset, position.y + jOffset] != null
                                 && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
@@ -53,20 +54,13 @@ public class Carnivore : Structure
 
         foreach (Structure plant in Attacked)
         {
-            plant.hurt(dommageStats[niveau]);
+            if (plant != null)
+            {
+                Debug.Log(plant);
+                plant.hurt(dommageStats[niveau]);
+            }
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
 }
 

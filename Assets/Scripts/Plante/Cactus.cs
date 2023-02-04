@@ -54,8 +54,10 @@ public class Cactus : Structure
 
         foreach (Structure plant in Attacked)
         {
-            if(plant != null)
+            Debug.Log("hello1");
+            if (plant != null)
             {
+                Debug.Log("hello2");
                 Debug.Log(plant);
                 plant.hurt(dommageStats[niveau]);
             }
