@@ -86,7 +86,7 @@ public abstract class Structure : MonoBehaviour
         List<Structure> Closests = new();
         int min = 100;
 
-        Debug.Log(min);
+        Debug.Log(structures.Count);
         foreach (Structure structure in structures)
         {
             int dist = GetTileDistance(structure.position);
