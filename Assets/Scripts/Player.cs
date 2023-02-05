@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     public TextMeshProUGUI waterCount;
     public TMP_Dropdown dropdown;
+    public TextMeshProUGUI dropdownLabel;
+    public TileSelector tileSelector;
 
     public enum Ressources : int
     {
@@ -61,9 +63,7 @@ public class Player : MonoBehaviour
 
         
     }
-
     
-
     public void SetAction(Action action)
     {
         this.action = action;
@@ -86,5 +86,6 @@ public class Player : MonoBehaviour
         {
             dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i] + " : " + this.seeds[i]));
         }
+        dropdownLabel.text = plantList[(int)tileSelector.planteID] + " : " + seeds[(int)tileSelector.planteID];
     }
 }

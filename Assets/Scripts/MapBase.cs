@@ -68,32 +68,40 @@ public class MapBase : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                
-                float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i) / noiseSpacing, randomOffset + ((float)j) / noiseSpacing);
-                if (noiseTileType < 0.05f)
-                {
-                    tiles[i, j] = TileType.CactusField;
-                }
-                else if (0.2f < noiseTileType && noiseTileType < 0.205f)
-                {
-                    tiles[i, j] = TileType.IvyField;
-                }
-                else if (0.4f < noiseTileType && noiseTileType < 0.405f)
-                {
-                    tiles[i, j] = TileType.CarnivorusField;
-                }
-                else if (0.5f < noiseTileType && noiseTileType < 0.505f)
-                {
-                    tiles[i, j] = TileType.SunflowerField;
-                }
-                else if (noiseTileType > 0.7f)
-                {
-                    tiles[i, j] = TileType.Water;
-                }
-                else
+                if ((i == startingPositions[0].x && j == startingPositions[0].y) || (i == startingPositions[0].x+1 && j == startingPositions[0].y) || (i == startingPositions[0].x && j == startingPositions[0].y+1)
+                || (i == startingPositions[1].x && j == startingPositions[1].y) || (i == startingPositions[1].x-1 && j == startingPositions[1].y) || (i == startingPositions[1].x && j == startingPositions[1].y - 1))
                 {
                     tiles[i, j] = TileType.Grass;
                 }
+                else
+                {
+                    float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i) / noiseSpacing, randomOffset + ((float)j) / noiseSpacing);
+                    if (noiseTileType < 0.05f)
+                    {
+                        tiles[i, j] = TileType.CactusField;
+                    }
+                    else if (0.2f < noiseTileType && noiseTileType < 0.205f)
+                    {
+                        tiles[i, j] = TileType.IvyField;
+                    }
+                    else if (0.4f < noiseTileType && noiseTileType < 0.405f)
+                    {
+                        tiles[i, j] = TileType.CarnivorusField;
+                    }
+                    else if (0.5f < noiseTileType && noiseTileType < 0.505f)
+                    {
+                        tiles[i, j] = TileType.SunflowerField;
+                    }
+                    else if (noiseTileType > 0.7f)
+                    {
+                        tiles[i, j] = TileType.Water;
+                    }
+                    else
+                    {
+                        tiles[i, j] = TileType.Grass;
+                    }
+                }
+                
                 
                 tilesObject[i, j] = Instantiate(tilePrefabs[(int)tiles[i, j]]);
                 tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f) ;
@@ -104,8 +112,8 @@ public class MapBase : MonoBehaviour
             }
         }
 
-        ReplaceStructure(Vector2Int.zero, StructureType.Pousse, roundManager.players[0]);
-        ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
+        ReplaceStructure(startingPositions[0], StructureType.Pousse, roundManager.players[0]);
+        ReplaceStructure(startingPositions[1], StructureType.Pousse, roundManager.players[1]);
     }
 
     public void AttackFromStructure(Vector2Int casePos, Player currentPlayer)
