@@ -59,7 +59,9 @@ MonoBehaviour:
   onlyGrassMargin: 5
   space: 2
   roundManager: {fileID: 0}
-  startingPositions: []
+  startingPositions:
+  - {x: 1, y: 1}
+  - {x: 10, y: 10}
   blueTeamOutline: {fileID: 0}
   redTeamOutline: {fileID: 0}
   defaultOutline: {fileID: 0}
