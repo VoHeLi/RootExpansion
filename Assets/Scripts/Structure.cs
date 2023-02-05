@@ -95,7 +95,7 @@ public abstract class Structure : MonoBehaviour
                 case MapBase.TileType.IvyField:
                     break;
 
-                case MapBase.TileType.CactusField:
+                case MapBase.TileType.SunflowerField:
                     break;
             }
         }

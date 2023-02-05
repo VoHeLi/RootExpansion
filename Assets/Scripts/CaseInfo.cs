@@ -226,10 +226,31 @@ public class CaseInfo : MonoBehaviour
                 break;
             }
 
-            if (traveled[node.position.x, node.position.y]) continue;
+            if (traveled[node.position.x, node.position.y])
+            {
+                continue;
+            }
 
             traveled[node.position.x, node.position.y] = true;
-            accessibleCases.Add(node.position);
+
+           Debug.Log("Gaston : " + node.position);
+
+
+            if(node.parent == null)
+            {
+                accessibleCases.Add(node.position);
+            }
+            else if (map.structures[node.position.x, node.position.y].type != MapBase.StructureType.Racine)
+            {
+                MapBase.TileNode toAddNode = node;
+                while(map.structures[toAddNode.parent.position.x, toAddNode.parent.position.y].type == MapBase.StructureType.Racine)
+                {
+                   accessibleCases.Add(toAddNode.position);
+                   toAddNode = toAddNode.parent;
+                }
+                accessibleCases.Add(toAddNode.position);
+            }
+            
 
             List<Vector2Int> neighbours = map.GetNeighbours(node.position);
 
@@ -239,9 +260,9 @@ public class CaseInfo : MonoBehaviour
                 {
                     if (map.tiles[neighbour.x, neighbour.y] == MapBase.TileType.Grass)
                     {
-                        if (map.structures[node.position.x, node.position.y] != null)
+                        if (map.structures[neighbour.x, neighbour.y] != null)
                         {
-                            if (map.structures[node.position.x, node.position.y].player == player)
+                            if (map.structures[neighbour.x, neighbour.y].player == player)
                             {
                                 queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
                             }

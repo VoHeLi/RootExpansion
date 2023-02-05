@@ -32,6 +32,12 @@ public class Player : MonoBehaviour
     {
         endTurn = false;
         this.updateRessources();
+
+        //TO REMOVE
+        seeds[0] = 10;
+        seeds[1] = 10;
+        seeds[2] = 10;
+        seeds[3] = 10;
     }
 
     public IEnumerator WaitForAction()
