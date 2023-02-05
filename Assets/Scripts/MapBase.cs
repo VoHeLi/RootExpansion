@@ -42,7 +42,7 @@ public class MapBase : MonoBehaviour
     public TileType[,] tiles;
 
     private GameObject[,] tilesObject;
-    private CaseInfo[,] tilesInfos;
+    public CaseInfo[,] tilesInfos;
 
     public Structure[,] structures;
 
@@ -111,6 +111,13 @@ public class MapBase : MonoBehaviour
 
         ReplaceStructure(Vector2Int.zero, StructureType.Pousse, roundManager.players[0]);
         ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
+    }
+
+    public void AttackFromStructure(Vector2Int casePos, Player currentPlayer)
+    {
+        Structure structure = structures[casePos.x, casePos.y];
+
+        structure.Action();
     }
 
     public void UpgradeStructure(Vector2Int casePos, Player currentPlayer)
@@ -262,7 +269,11 @@ public class MapBase : MonoBehaviour
                 {
                     for (int j = 0; j < height; j++)
                     {
-                        if(!added[i,j]) notPossible.Add(tilesInfos[i, j]);
+                        if (!added[i, j])
+                        {
+                            notPossible.Add(tilesInfos[i, j]);
+                        }
+                        
                     }
                 }
 

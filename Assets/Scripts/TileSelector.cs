@@ -107,28 +107,19 @@ public class TileSelector : MonoBehaviour
 
         map.GetPossibleCases(possible, notPossible, planteID, Action.ActionType.Pass);
 
-        foreach (CaseInfo tile in possible)
+        for(int i = 0; i < map.width; i++)
         {
-            if (map.structures[tile.casePos.x, tile.casePos.y] == null)
+            for(int j = 0; j < map.height; j++)
             {
-                tile.SetOutline(defaultOutline);
-            }
-            else
-            {
-                tile.SetOutline(map.structures[tile.casePos.x, tile.casePos.y].player == map.roundManager.players[0] ? map.blueTeamOutline : map.redTeamOutline);
-            }
-            
-        }
-
-        foreach (CaseInfo tile in notPossible)
-        {
-            if (map.structures[tile.casePos.x, tile.casePos.y] == null)
-            {
-                tile.SetOutline(defaultOutline);
-            }
-            else
-            {
-                tile.SetOutline(map.structures[tile.casePos.x, tile.casePos.y].player == map.roundManager.players[0] ? map.blueTeamOutline : map.redTeamOutline);
+                CaseInfo tile = map.tilesInfos[i, j];
+                if (map.structures[tile.casePos.x, tile.casePos.y] == null)
+                {
+                    tile.SetOutline(defaultOutline);
+                }
+                else
+                {
+                    tile.SetOutline(map.structures[tile.casePos.x, tile.casePos.y].player == map.roundManager.players[0] ? map.blueTeamOutline : map.redTeamOutline);
+                }
             }
         }
     }
