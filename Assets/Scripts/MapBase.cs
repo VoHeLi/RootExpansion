@@ -115,6 +115,18 @@ public class MapBase : MonoBehaviour
         structure.niveau += 1;
     }
 
+    public void DestroyStructure(Structure structure)
+    {
+        Player structurePlayer = structure.player;
+
+        structures[structure.position.x, structure.position.y] = null;
+
+        if (structure != null)
+        {
+            Destroy(structure.gameObject);
+        }
+    }
+
     private Vector3 GetRealPosition(Vector2Int position)
     {
         return tilesObject[position.x, position.y].transform.position;
