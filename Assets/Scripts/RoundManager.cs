@@ -62,7 +62,7 @@ public class RoundManager : MonoBehaviour
 
                 for (int i = 0; i < actionCount; i++)
                 {
-                    turnCount.text = "Tour " + nbTurn.ToString() + " | Action " + (i+1).ToString() + " | " + currentPlayer.getName();
+                    turnCount.text = "Tour " + nbTurn.ToString() + " | Action " + (i+1).ToString() + " /3 | " + currentPlayer.getName();
                     yield return player.WaitForAction();
 
                     if (currentPlayer.endTurn)
