@@ -60,6 +60,7 @@ public abstract class Structure : MonoBehaviour
 
     public abstract void ProduceRessource(Player player);
 
+    [ContextMenu("seed")]
     public void ProduceSeeds ( Player player ){
         List<Vector2Int> possiblePos = new();
 
@@ -87,15 +88,23 @@ public abstract class Structure : MonoBehaviour
             switch (map.tiles[posChamp.x, posChamp.y])
             {
                 case MapBase.TileType.CactusField:
+                    player.seeds[((int)MapBase.StructureType.Cactus) - 2]++;
+                    player.updateRessources();
                     break;
 
                 case MapBase.TileType.CarnivorusField:
+                    player.seeds[((int)MapBase.StructureType.Carnivore) - 2]++;
+                    player.updateRessources();
                     break;
 
                 case MapBase.TileType.IvyField:
+                    player.seeds[((int)MapBase.StructureType.Lierre) - 2]++;
+                    player.updateRessources();
                     break;
 
-                case MapBase.TileType.CactusField:
+                case MapBase.TileType.SunflowerField:
+                    player.seeds[((int)MapBase.StructureType.Tournesol) - 2]++;
+                    player.updateRessources();
                     break;
             }
         }

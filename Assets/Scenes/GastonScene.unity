@@ -918,6 +918,14 @@ PrefabInstance:
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: width
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: height
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: roundManager
       value: 
       objectReference: {fileID: 6406144}
@@ -967,7 +975,11 @@ PrefabInstance:
       objectReference: {fileID: 506946980678677595, guid: 3c0df03290976754692b2a8cee7c6281, type: 3}
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: startingPositions.Array.data[1].x
-      value: 20
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: startingPositions.Array.data[1].y
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder

@@ -63,6 +63,7 @@ public class RoundManager : MonoBehaviour
                 foreach (Structure structure in currentPlayer.playerStructures)
                 {
                     structure.ProduceRessource(currentPlayer);
+                    structure.ProduceSeeds(currentPlayer);
                 }
 
                 for (int i = 0; i < actionCount; i++)
