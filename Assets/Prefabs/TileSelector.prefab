@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultOutline: {fileID: 2100000, guid: e4c5c57faca167340b8e0917681b082b, type: 2}
-  okOutline: {fileID: 2100000, guid: e6c8ed36fda5d2741b15bb6c59006573, type: 2}
+  okOutline: {fileID: 2100000, guid: 7adf6333d3483d347874233008588634, type: 2}
   notOkOutline: {fileID: 2100000, guid: e4c5c57faca167340b8e0917681b082b, type: 2}
   selectedOkOutline: {fileID: 2100000, guid: 1f8d0407c537f7b4997eeeb113417a18, type: 2}
   selectedNotOkOutline: {fileID: 2100000, guid: 465366001b7fd654e8b6b37abcf86f00, type: 2}
