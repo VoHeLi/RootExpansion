@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class MainBase : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void PlayGame()
-    {
-        SceneManager.LoadScene(0); //à changer avec la scène de jeu
-    }
+    //public void PlayGame()
+    //{
+       // SceneManager.LoadScene(0); //à changer avec la scène de jeu
+    //}
 
 
     public void QuitGame()
