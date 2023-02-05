@@ -12,6 +12,7 @@ public class MapBase : MonoBehaviour
     [SerializeField] public int onlyGrassMargin = 5;
     [SerializeField] private float space;
     [SerializeField] public RoundManager roundManager;
+    [SerializeField] public Vector2Int[] startingPositions;
 
     [SerializeField] public Material blueTeamOutline;
     [SerializeField] public Material redTeamOutline;
@@ -377,5 +378,12 @@ public class MapBase : MonoBehaviour
             ReplaceStructure(node.position, StructureType.Racine, roundManager.currentPlayer);
             node = node.parent;
         }
+    }
+
+
+
+    private void DestroyUnlinkedStructures()
+    {
+        
     }
 }
