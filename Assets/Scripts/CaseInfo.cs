@@ -176,9 +176,18 @@ public class CaseInfo : MonoBehaviour
                     {
                         if (map.structures[node.position.x, node.position.y] != null)
                         {
-                            if ((map.structures[node.position.x, node.position.y].player == map.roundManager.currentPlayer || (map.structures[node.position.x, node.position.y].type == MapBase.StructureType.Racine && useRoot)) && !(!useRoot && map.structures[node.position.x, node.position.y].type != MapBase.StructureType.Racine))
-                            {
-                                queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                            if ((map.structures[node.position.x, node.position.y].player == map.roundManager.currentPlayer)){
+                                if (useRoot)
+                                {
+                                    if(map.structures[node.position.x, node.position.y].type == MapBase.StructureType.Racine){
+                                        queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                                }
                             }
                         }
 

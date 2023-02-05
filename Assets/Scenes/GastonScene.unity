@@ -640,6 +640,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1450692559192649264, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1450692559192649264, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 2727005073260244875, guid: e94346d6f777680458b1cc6472835e86, type: 3}
       propertyPath: tileSelector
       value: 
@@ -869,6 +877,10 @@ PrefabInstance:
       propertyPath: waterCount
       value: 
       objectReference: {fileID: 1961480807}
+    - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
+      propertyPath: tileSelector
+      value: 
+      objectReference: {fileID: 344905738}
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: cameras.Array.data[0]
       value: 

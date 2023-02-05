@@ -247,6 +247,11 @@ public class MapBase : MonoBehaviour
 
                 foreach (Structure structure in roundManager.currentPlayer.playerStructures)
                 {
+                    if (structure.type == StructureType.Racine)
+                    {
+                        continue;
+                    }
+
                     List<Vector2Int> liste = CaseInfo.GetPossibleCases(structure.position, plantRootRadius, this, false);
 
                     foreach (Vector2Int tilePos in liste)
