@@ -69,9 +69,9 @@ public abstract class Structure : MonoBehaviour
             /// x-1,y
             possiblePos.Add(new Vector2Int(position.x - 1, position.y));
             /// x-1,y+1
-            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x + 1, position.y + 1)); }
+            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x - 1, position.y + 1)); }
             /// x-1,y-1
-            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x + 1, position.y - 1)); }
+            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x - 1, position.y - 1)); }
         }
 
         /// x+1,y
