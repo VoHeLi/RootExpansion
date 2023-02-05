@@ -155,7 +155,6 @@ public class MapBase : MonoBehaviour
         {
             PlaceRoots(position);
         }
-        
 
         GameObject structureObject = Instantiate(structurePrefabs[(int)type]);
         structureObject.transform.position = GetRealPosition(position);
@@ -165,7 +164,6 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y].type = type;
         structures[position.x, position.y].player = player;
         player.playerStructures.Add(structures[position.x, position.y]);
-        //structures[position.x, position.y].map = this;
         tilesInfos[position.x, position.y].SetOutline(roundManager.currentPlayer == roundManager.players[0] ? blueTeamOutline : redTeamOutline);
     }
 
