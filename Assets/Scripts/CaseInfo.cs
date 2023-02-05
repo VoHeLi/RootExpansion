@@ -35,7 +35,7 @@ public class CaseInfo : MonoBehaviour
             case Action.ActionType.Arroser:
                 return isCaseArrosable();
             case Action.ActionType.Attack:
-                return true; // isCaseAttackable();
+                return isCaseAttackable();
 
         }
         return IsCasePlantable(planteID);
@@ -95,8 +95,9 @@ public class CaseInfo : MonoBehaviour
         return true;
     }
 
-    public bool isCaseAttackable(Structure attackingPlant) 
+    public bool isCaseAttackable() 
     {
+        if(map.structures[casePos.x, casePos.y] == null) { return false;  }
         int attackRange = map.structures[casePos.x, casePos.y].attackRange;
         int plantCount = 0;
         for (int iOffset = attackRange * -2; iOffset < attackRange * 2; iOffset++)
