@@ -69,6 +69,9 @@ public class Action
             case ActionType.Arroser:
                 map.UpgradeStructure(actionTile.casePos, map.roundManager.currentPlayer);
                 break;
+            case ActionType.Attack:
+                map.AttackFromStructure(actionTile.casePos, map.roundManager.currentPlayer);
+                break;
         }
     }
 }

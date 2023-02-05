@@ -104,6 +104,13 @@ public class MapBase : MonoBehaviour
         ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
     }
 
+    public void AttackFromStructure(Vector2Int casePos, Player currentPlayer)
+    {
+        Structure structure = structures[casePos.x, casePos.y];
+
+        structure.Action();
+    }
+
     public void UpgradeStructure(Vector2Int casePos, Player currentPlayer)
     {
         Structure structure = structures[casePos.x, casePos.y];
