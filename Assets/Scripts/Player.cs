@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator WaitForAction()
     {
-        
+        updateRessources();
 
         //Wait for action
         while (action == null)
