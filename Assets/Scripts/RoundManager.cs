@@ -14,7 +14,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private MapBase map;
     [SerializeField] private GameObject[] cameras;
-    [SerializeField] private TileSelector tileSelector;
+    [SerializeField] public TileSelector tileSelector;
 
     public Player[] players;
 

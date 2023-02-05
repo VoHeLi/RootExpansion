@@ -140,6 +140,8 @@ public class CaseInfo : MonoBehaviour
     {
         List<Vector2Int> accessibleCases = new();
 
+        if (map.roundManager.currentPlayer.seeds[((int)map.roundManager.tileSelector.planteID) - 2] <= 0) return accessibleCases;
+
         bool[,] traveled = new bool[map.width, map.height];
         Queue queue = new Queue();
 

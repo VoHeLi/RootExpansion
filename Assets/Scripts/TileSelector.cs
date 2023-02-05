@@ -23,7 +23,7 @@ public class TileSelector : MonoBehaviour
     private PlayerInput playerInput;
     private RoundManager roundManager;
 
-    private MapBase.StructureType planteID;
+    public MapBase.StructureType planteID;
 
     public Vector2 selectedPos
     {

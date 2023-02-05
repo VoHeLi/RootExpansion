@@ -139,6 +139,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 768729922035289763, guid: 6b2ed45d1238f224898d417953773544, type: 3}
   m_PrefabInstance: {fileID: 768729923830085812}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &145528665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3942256414990170524, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+  m_PrefabInstance: {fileID: 1272342671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152704748
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3942256415052930079, guid: e94346d6f777680458b1cc6472835e86, type: 3}
       propertyPath: m_text
-      value: Tournesol
+      value: Sunflower
       objectReference: {fileID: 0}
     - target: {fileID: 3942256415052930079, guid: e94346d6f777680458b1cc6472835e86, type: 3}
       propertyPath: m_fontColor.b
@@ -870,6 +881,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1050580814}
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
+      propertyPath: dropdown
+      value: 
+      objectReference: {fileID: 145528665}
+    - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: turnCount
       value: 
       objectReference: {fileID: 246133963}
@@ -953,10 +968,6 @@ PrefabInstance:
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: startingPositions.Array.data[1].x
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
-      propertyPath: startingPositions.Array.data[1].y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder
