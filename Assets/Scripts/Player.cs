@@ -80,12 +80,12 @@ public class Player : MonoBehaviour
         waterCount.text = this.ressources[(int)Player.Ressources.Eau].ToString();
 
         dropdown.options.Clear();
-        string[] plantList = new string[4] { "Sunflower", "Carnivorous Plant", "Ivy", "Cactus" };
+        string[] plantList = new string[6] {"", "", "Sunflower", "Carnivorous Plant", "Ivy", "Cactus" };
 
-        for (int i = 0; i < plantList.Length; i++)
+        for (int i = 0; i < plantList.Length-2; i++)
         {
-            dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i] + " : " + this.seeds[i]));
+            dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i+2] + " : " + this.seeds[i]));
         }
-        dropdownLabel.text = plantList[(int)tileSelector.planteID] + " : " + seeds[(int)tileSelector.planteID];
+        dropdownLabel.text = plantList[(int)tileSelector.planteID] + " : " + seeds[Mathf.Max(0,(int)tileSelector.planteID-2)];
     }
 }
