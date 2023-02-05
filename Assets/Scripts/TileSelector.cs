@@ -126,6 +126,8 @@ public class TileSelector : MonoBehaviour
 
     public void BeginPlantAction()
     {
+        ClearTileSelection();
+
         map.ResetTempStructure();
         pendingAction = null;
 
@@ -167,6 +169,8 @@ public class TileSelector : MonoBehaviour
 
     public void BeginAttackAction()
     {
+
+        ClearTileSelection();
         map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Attack);
 
@@ -188,6 +192,8 @@ public class TileSelector : MonoBehaviour
 
     public void BeginArroserAction()
     {
+
+        ClearTileSelection();
         map.ResetTempStructure();
         pendingAction = new Action(Action.ActionType.Arroser);
 
