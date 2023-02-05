@@ -174,6 +174,7 @@ public class MapBase : MonoBehaviour
         structures[position.x, position.y].position = position;
         structures[position.x, position.y].type = type;
         structures[position.x, position.y].player = player;
+        structures[position.x, position.y].map = this;
         player.playerStructures.Add(structures[position.x, position.y]);
         tilesInfos[position.x, position.y].SetOutline(roundManager.currentPlayer == roundManager.players[0] ? blueTeamOutline : redTeamOutline);
     }

@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GastonScene.unity
+    guid: de6d6e60f87dd7f4b92e314b9de50816
   m_configObjects: {}

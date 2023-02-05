@@ -180,7 +180,7 @@ public abstract class Structure : MonoBehaviour
 
     public void Start()
     {
-        map = GameObject.Find("Map").GetComponent<MapBase>();
+        //map = GameObject.Find("Map").GetComponent<MapBase>();
 
         if(pvStats != null && pvStats.Length > 0)
         {
