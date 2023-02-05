@@ -16,10 +16,10 @@ public class SelectSeed : MonoBehaviour
                 tileSelector.changeSelectedPlant(MapBase.StructureType.Tournesol);
                 break;
             case 1:
-                tileSelector.changeSelectedPlant(MapBase.StructureType.Lierre);
+                tileSelector.changeSelectedPlant(MapBase.StructureType.Carnivore);
                 break;
             case 2:
-                tileSelector.changeSelectedPlant(MapBase.StructureType.Carnivore);
+                tileSelector.changeSelectedPlant(MapBase.StructureType.Lierre);
                 break;
             case 3:
                 tileSelector.changeSelectedPlant(MapBase.StructureType.Cactus);

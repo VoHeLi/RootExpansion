@@ -70,7 +70,12 @@ public class Player : MonoBehaviour
         UnityEngine.Debug.Log(waterCount);
         waterCount.text = this.ressources[(int)Player.Ressources.Eau].ToString();
 
-        //dropdown.options.Clear();
-        //dropdown.options.Add(new Dropdown.OptionData() { text = "your stuff" });
+        dropdown.options.Clear();
+        string[] plantList = new string[4] { "Sunflower", "Carnivorous Plant", "Ivy", "Cactus" };
+
+        for (int i = 0; i < plantList.Length; i++)
+        {
+            dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i] + " : " + this.seeds[i]));
+        }
     }
 }
