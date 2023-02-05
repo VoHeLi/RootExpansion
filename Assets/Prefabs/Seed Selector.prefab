@@ -476,10 +476,10 @@ MonoBehaviour:
       - m_Target: {fileID: 87072064596469034}
         m_TargetAssemblyTypeName: SelectSeed, Assembly-CSharp
         m_MethodName: OnValueChange
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1321989473965372221}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Dropdown, Unity.TextMeshPro
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSelector: {fileID: 5962386249662839545, guid: 0258f8a1cbd17ab48baa974419e29edb, type: 3}
-  startDropdown: {fileID: 1321989473965372221}
+  dropdown: {fileID: 1321989473965372221}
 --- !u!1 &1321989474439173792
 GameObject:
   m_ObjectHideFlags: 0

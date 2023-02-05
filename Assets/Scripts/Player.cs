@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public int[] seeds = new int[4];
 
     public TextMeshProUGUI waterCount;
+    public TMP_Dropdown dropdown;
 
     public enum Ressources : int
     {
@@ -68,5 +69,8 @@ public class Player : MonoBehaviour
     {
         UnityEngine.Debug.Log(waterCount);
         waterCount.text = this.ressources[(int)Player.Ressources.Eau].ToString();
+
+        //dropdown.options.Clear();
+        //dropdown.options.Add(new Dropdown.OptionData() { text = "your stuff" });
     }
 }
