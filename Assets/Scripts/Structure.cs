@@ -64,17 +64,20 @@ public abstract class Structure : MonoBehaviour
     public void ProduceSeeds ( Player player ){
         List<Vector2Int> possiblePos = new();
 
-        /// x-1,y
-        if (position.x - 1 >= 0) possiblePos.Add(new Vector2Int(position.x - 1, position.y));
+        if (position.x - 1 >= 0)
+        {
+            /// x-1,y
+            possiblePos.Add(new Vector2Int(position.x - 1, position.y));
+            /// x-1,y+1
+            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x + 1, position.y + 1)); }
+            /// x-1,y-1
+            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x + 1, position.y - 1)); }
+        }
 
+        /// x+1,y
         if (position.x + 1 < map.width)
         {
-            /// x+1,y
             possiblePos.Add(new Vector2Int(position.x + 1, position.y));
-            /// x+1,y+1
-            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x + 1, position.y + 1)); }
-            /// x+1,y-1
-            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x + 1, position.y - 1)); }
         }
 
         /// x,y+1
