@@ -13,7 +13,7 @@ public class Lierre : Structure
     }
     public override void ProduceRessource(Player player)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
 
