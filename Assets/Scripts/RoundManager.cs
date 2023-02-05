@@ -82,4 +82,55 @@ public class RoundManager : MonoBehaviour
     {
         currentPlayer.endTurn = true;
     }
+
+    public bool EndGameConditions()
+    {
+        if (nbTurn > nbTurnMax){ return true; }
+        if (map.structures[0,0]==null || map.structures[map.width-1, map.height-1] == null) { return true; }
+        return false;
+    }
+
+    
+    public Player calculateWinner()
+    {
+        if(map.structures[0, 0] == null) { return map.structures[map.width - 1, map.height - 1].player; }
+        Player P1 = map.structures[0, 0].player;
+        float pointP1 = 0;
+
+        if (map.structures[map.width - 1, map.height - 1] == null) { return map.structures[0, 0].player; }
+        Player P2 = map.structures[0, 0].player;
+        float pointP2 = 0;
+
+        if (nbTurn > nbTurnMax)
+        {
+            for (int i = 0; i < map.width; i++)
+            {
+                for (int j = 0; j < map.height; j++)
+                {
+                    if (map.structures[i, j] != null)
+                    {
+                        if (map.structures[i, j].player == P1)
+                        {
+                            pointP1 += map.structures[i, j].niveau;
+                        }
+                        else if (map.structures[i, j].player == P2)
+                        {
+                            pointP2 += map.structures[i, j].niveau;
+                        }
+                    }
+                }
+            }
+        }
+
+        pointP1 += P1.ressources[0];
+        pointP2 += P2.ressources[0];
+
+        if (pointP1 < pointP2)
+        {
+            return P2;
+        }
+        return P1;
+    
+    }
+    
 }

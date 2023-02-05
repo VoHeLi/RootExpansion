@@ -32,9 +32,7 @@ public class Cactus : Structure
                     {
                         if ((map.structures[position.x + iOffset, position.y + jOffset] != null)&&(map.structures[position.x + iOffset, position.y + jOffset].player != player))
                         {
-                            if (map.structures[position.x + iOffset, position.y + jOffset] != null
-                                && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
-                                && (map.structures[position.x + iOffset, position.y + jOffset].player == map.roundManager.currentPlayer))
+                            if ((map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine))
                             {
                                 Attackable.Add(map.structures[position.x + iOffset, position.y + jOffset]);
                             }
@@ -45,7 +43,7 @@ public class Cactus : Structure
         }
 
         List<Structure> Attacked = new();
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 3; i++)
         {
             Structure plant = findClosest(Attackable);
             Attacked.Add(plant);
@@ -54,10 +52,8 @@ public class Cactus : Structure
 
         foreach (Structure plant in Attacked)
         {
-            Debug.Log("hello1");
             if (plant != null)
             {
-                Debug.Log("hello2");
                 Debug.Log(plant);
                 plant.hurt(dommageStats[niveau]);
             }

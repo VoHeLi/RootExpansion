@@ -104,6 +104,29 @@ public class MapBase : MonoBehaviour
         ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
     }
 
+    public void UpgradeStructure(Vector2Int casePos, Player currentPlayer)
+    {
+        Structure structure = structures[casePos.x, casePos.y];
+        int cost = Mathf.RoundToInt(Mathf.Pow(2, structure.niveau + 1));
+
+        currentPlayer.ressources[(int)Player.Ressources.Eau] -= cost;
+        currentPlayer.updateRessources();
+
+        structure.niveau += 1;
+    }
+
+    public void DestroyStructure(Structure structure)
+    {
+        Player structurePlayer = structure.player;
+
+        structures[structure.position.x, structure.position.y] = null;
+
+        if (structure != null)
+        {
+            Destroy(structure.gameObject);
+        }
+    }
+
     private Vector3 GetRealPosition(Vector2Int position)
     {
         return tilesObject[position.x, position.y].transform.position;
@@ -179,13 +202,74 @@ public class MapBase : MonoBehaviour
 
     public void GetPossibleCases(List<CaseInfo> possible, List<CaseInfo> notPossible, MapBase.StructureType type, Action.ActionType actionType)
     {
-        for(int i = 0; i < width; i++)
+
+       
+        switch (actionType)
         {
-            for(int j = 0; j < height; j++)
-            {
-                (tilesInfos[i, j].IsCaseUsable(type, actionType) ? possible : notPossible).Add(tilesInfos[i, j]);
-            }
+            case Action.ActionType.PlantCactus:
+            case Action.ActionType.PlantCarnivore:
+            case Action.ActionType.PlantLierre:
+            case Action.ActionType.PlantPousse:
+            case Action.ActionType.PlantTournesol:
+
+                bool[,] added = new bool[width, height];
+
+                int[] plantRootRadiusArray = new int[6] { 0, 0, 2, 3, 4, 2 };
+                int plantRootRadius = 0;
+
+                switch (actionType)
+                {
+                    case Action.ActionType.PlantCactus:
+                        plantRootRadius = plantRootRadiusArray[(int)StructureType.Cactus];
+                        break;
+                    case Action.ActionType.PlantCarnivore:
+                        plantRootRadius = plantRootRadiusArray[(int)StructureType.Carnivore];
+                        break;
+                    case Action.ActionType.PlantLierre:
+                        plantRootRadius = plantRootRadiusArray[(int)StructureType.Lierre];
+                        break;
+                    case Action.ActionType.PlantPousse:
+                        plantRootRadius = plantRootRadiusArray[(int)StructureType.Pousse];
+                        break;
+                    case Action.ActionType.PlantTournesol:
+                        plantRootRadius = plantRootRadiusArray[(int)StructureType.Tournesol];
+                        break;
+                }
+
+                foreach (Structure structure in roundManager.currentPlayer.playerStructures)
+                {
+                    List<Vector2Int> liste = CaseInfo.GetPossibleCases(structure.position, plantRootRadius, this);
+
+                    foreach (Vector2Int tilePos in liste)
+                    {
+                        if (structures[tilePos.x, tilePos.y] != null) continue;
+                        possible.Add(tilesInfos[tilePos.x, tilePos.y]);
+                        added[tilePos.x, tilePos.y] = true;
+                    }
+                    
+                }
+
+                for (int i = 0; i < width; i++)
+                {
+                    for (int j = 0; j < height; j++)
+                    {
+                        if(!added[i,j]) notPossible.Add(tilesInfos[i, j]);
+                    }
+                }
+
+                return;
+            case Action.ActionType.Arroser:
+            case Action.ActionType.Attack:
+                for (int i = 0; i < width; i++)
+                {
+                    for (int j = 0; j < height; j++)
+                    {
+                        (tilesInfos[i, j].IsCaseUsable(type, actionType) ? possible : notPossible).Add(tilesInfos[i, j]);
+                    }
+                }
+                return;
         }
+
     }
 
     public List<Vector2Int> GetNeighbours(Vector2Int position)
@@ -210,7 +294,7 @@ public class MapBase : MonoBehaviour
         return neightbours;
     }
 
-    class TileNode
+    public class TileNode
     {
         public TileNode parent;
         public Vector2Int position;

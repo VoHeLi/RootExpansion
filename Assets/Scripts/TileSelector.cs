@@ -44,6 +44,11 @@ public class TileSelector : MonoBehaviour
         roundManager = GameObject.Find("RoundManager").GetComponent<RoundManager>();
     }
 
+    private void Start()
+    {
+        planteID = MapBase.StructureType.Tournesol;
+    }
+
     void Update()
     {
 
