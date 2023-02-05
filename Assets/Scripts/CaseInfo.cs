@@ -43,7 +43,8 @@ public class CaseInfo : MonoBehaviour
 
     public bool IsCasePlantable(MapBase.StructureType planteID)
     {
-        if (map.structures[casePos.x, casePos.y] != null) return false; 
+        if (map.structures[casePos.x, casePos.y] != null) return false;
+        if (map.roundManager.currentPlayer.seeds[((int)planteID) - 2] <= 0) return false;
 
         int[] plantRootRadiusArray = new int[6] { 0, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
@@ -59,17 +60,13 @@ public class CaseInfo : MonoBehaviour
             }
         }
         if (plantCount <= 0) { return false; }
+
         // la case doit etre de type grass
         if (map.tiles[casePos.x, casePos.y] != 0)
         {
             return false;
         }
 
-        /*if ((map.structures[casePos.x, casePos.y] != null) && (map.structures[casePos.x, casePos.y].player != map.roundManager.currentPlayer))
-        {
-            Debug.Log(casePos);
-            return false;
-        }*/
 
 
         return true;

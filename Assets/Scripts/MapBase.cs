@@ -153,7 +153,6 @@ public class MapBase : MonoBehaviour
         {
             PlaceRoots(position);
         }
-        
 
         GameObject structureObject = Instantiate(structurePrefabs[(int)type]);
         structureObject.transform.position = GetRealPosition(position);
