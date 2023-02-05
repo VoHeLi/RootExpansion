@@ -26,8 +26,12 @@ public abstract class Structure : MonoBehaviour
         set
         {
             _niveau = value;
-            if(levelText != null)levelText.text = _niveau.ToString();
-            
+            if(levelText != null)levelText.text = (_niveau+1).ToString();
+
+            if(value > 0)
+            {
+                life += pvStats[value] - pvStats[value - 1];
+            }
         }
     }
 
@@ -40,7 +44,7 @@ public abstract class Structure : MonoBehaviour
         set
         {
             _life = value;
-            if (lifeText != null) lifeText.text = _life.ToString();
+            if (lifeText != null) lifeText.text = _life.ToString() + " / " + pvStats[niveau];
             if (lifeBar != null) lifeBar.transform.localScale = new Vector3(_life / (float)pvStats[niveau], 1, 1);
         }
     }

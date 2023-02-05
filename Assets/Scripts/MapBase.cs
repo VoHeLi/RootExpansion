@@ -104,6 +104,17 @@ public class MapBase : MonoBehaviour
         ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
     }
 
+    public void UpgradeStructure(Vector2Int casePos, Player currentPlayer)
+    {
+        Structure structure = structures[casePos.x, casePos.y];
+        int cost = Mathf.RoundToInt(Mathf.Pow(2, structure.niveau + 1));
+
+        currentPlayer.ressources[(int)Player.Ressources.Eau] -= cost;
+        currentPlayer.updateRessources();
+
+        structure.niveau += 1;
+    }
+
     private Vector3 GetRealPosition(Vector2Int position)
     {
         return tilesObject[position.x, position.y].transform.position;

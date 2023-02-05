@@ -66,6 +66,9 @@ public class Action
             case ActionType.PlantTournesol:
                 map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Tournesol, map.roundManager.currentPlayer);
                 break;
+            case ActionType.Arroser:
+                map.UpgradeStructure(actionTile.casePos, map.roundManager.currentPlayer);
+                break;
         }
     }
 }

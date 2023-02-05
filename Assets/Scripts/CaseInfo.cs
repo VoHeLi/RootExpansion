@@ -45,7 +45,7 @@ public class CaseInfo : MonoBehaviour
     {
         if (map.structures[casePos.x, casePos.y] != null) return false; 
 
-        int[] plantRootRadiusArray = new int[6] { 3, 0, 2, 3, 4, 2};
+        int[] plantRootRadiusArray = new int[6] { 0, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 
         int plantCount = 0;
@@ -89,8 +89,9 @@ public class CaseInfo : MonoBehaviour
         Structure selectedPlant = map.structures[casePos.x, casePos.y];
         int water = map.roundManager.currentPlayer.ressources[0];
         if (selectedPlant == null) { return false;}
-        if(selectedPlant.niveau >= 3 ) { return false;}
-        if (Mathf.Pow(2, selectedPlant.niveau + 1) > water) { return false;}
+        if(selectedPlant.niveau > 3 ) { return false;}
+        if(selectedPlant.player != map.roundManager.currentPlayer) { return false; }
+        if (Mathf.RoundToInt(Mathf.Pow(2, selectedPlant.niveau + 1)) > water) { return false;}
         return true;
     }
 
