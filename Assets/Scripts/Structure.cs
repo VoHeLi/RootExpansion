@@ -46,6 +46,11 @@ public abstract class Structure : MonoBehaviour
             _life = value;
             if (lifeText != null) lifeText.text = _life.ToString() + " / " + pvStats[niveau];
             if (lifeBar != null) lifeBar.transform.localScale = new Vector3(_life / (float)pvStats[niveau], 1, 1);
+
+            if(_life <= 0)
+            {
+                map.DestroyStructure(this);
+            }
         }
     }
 
