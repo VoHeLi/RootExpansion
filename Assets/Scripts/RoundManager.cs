@@ -63,10 +63,13 @@ public class RoundManager : MonoBehaviour
 
                 currentPlayer = player;
 
+                player.seeds[((int)MapBase.StructureType.Tournesol) - 2]++;
+                player.updateRessources();
                 //Ressources
                 foreach (Structure structure in currentPlayer.playerStructures)
                 {
                     structure.ProduceRessource(currentPlayer);
+                    structure.ProduceSeeds(currentPlayer);
                 }
 
                 for (int i = 0; i < actionCount; i++)

@@ -60,20 +60,24 @@ public abstract class Structure : MonoBehaviour
 
     public abstract void ProduceRessource(Player player);
 
+    [ContextMenu("seed")]
     public void ProduceSeeds ( Player player ){
         List<Vector2Int> possiblePos = new();
 
-        /// x-1,y
-        if (position.x - 1 >= 0) possiblePos.Add(new Vector2Int(position.x - 1, position.y));
+        if (position.x - 1 >= 0)
+        {
+            /// x-1,y
+            possiblePos.Add(new Vector2Int(position.x - 1, position.y));
+            /// x-1,y+1
+            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x + 1, position.y + 1)); }
+            /// x-1,y-1
+            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x + 1, position.y - 1)); }
+        }
 
+        /// x+1,y
         if (position.x + 1 < map.width)
         {
-            /// x+1,y
             possiblePos.Add(new Vector2Int(position.x + 1, position.y));
-            /// x+1,y+1
-            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x + 1, position.y + 1)); }
-            /// x+1,y-1
-            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x + 1, position.y - 1)); }
         }
 
         /// x,y+1
@@ -87,15 +91,23 @@ public abstract class Structure : MonoBehaviour
             switch (map.tiles[posChamp.x, posChamp.y])
             {
                 case MapBase.TileType.CactusField:
+                    player.seeds[((int)MapBase.StructureType.Cactus) - 2]++;
+                    player.updateRessources();
                     break;
 
                 case MapBase.TileType.CarnivorusField:
+                    player.seeds[((int)MapBase.StructureType.Carnivore) - 2]++;
+                    player.updateRessources();
                     break;
 
                 case MapBase.TileType.IvyField:
+                    player.seeds[((int)MapBase.StructureType.Lierre) - 2]++;
+                    player.updateRessources();
                     break;
 
                 case MapBase.TileType.SunflowerField:
+                    player.seeds[((int)MapBase.StructureType.Tournesol) - 2]++;
+                    player.updateRessources();
                     break;
             }
         }

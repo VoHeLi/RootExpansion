@@ -35,16 +35,19 @@ public class Player : MonoBehaviour
     {
         endTurn = false;
         this.seeds[0] = 3;
-        this.seeds[1] = 3;
-        this.seeds[2] = 3;
-        this.seeds[3] = 3;
         
         this.updateRessources();
+
+        //TO REMOVE
+        seeds[0] = 10;
+        seeds[1] = 10;
+        seeds[2] = 10;
+        seeds[3] = 10;
     }
 
     public IEnumerator WaitForAction()
     {
-        
+        updateRessources();
 
         //Wait for action
         while (action == null)
@@ -80,12 +83,13 @@ public class Player : MonoBehaviour
         waterCount.text = this.ressources[(int)Player.Ressources.Eau].ToString();
 
         dropdown.options.Clear();
-        string[] plantList = new string[4] { "Sunflower", "Carnivorous Plant", "Ivy", "Cactus" };
+        string[] plantList = new string[6] {"", "", "Sunflower", "Carnivorous Plant", "Ivy", "Cactus" };
 
-        for (int i = 0; i < plantList.Length; i++)
+        for (int i = 0; i < plantList.Length-2; i++)
         {
-            dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i] + " : " + this.seeds[i]));
+            dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i+2] + " : " + this.seeds[i]));
         }
-        dropdownLabel.text = plantList[Math.Max(0, (int)tileSelector.planteID-2)] + " : " + seeds[Math.Max(0, (int)tileSelector.planteID-2)];
+
+        dropdownLabel.text = plantList[(int)tileSelector.planteID] + " : " + seeds[Mathf.Max(0,(int)tileSelector.planteID-2)];
     }
 }

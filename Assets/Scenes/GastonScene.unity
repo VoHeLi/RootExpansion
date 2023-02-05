@@ -327,6 +327,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70e4c8d9375e21540b35606e1f527247, type: 3}
+--- !u!114 &622974802 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3942256415052930079, guid: e94346d6f777680458b1cc6472835e86, type: 3}
+  m_PrefabInstance: {fileID: 1272342671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1050580814 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
@@ -897,6 +908,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 344905738}
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
+      propertyPath: dropdownLabel
+      value: 
+      objectReference: {fileID: 622974802}
+    - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: cameras.Array.data[0]
       value: 
       objectReference: {fileID: 1731110934}
@@ -916,6 +931,14 @@ PrefabInstance:
     - target: {fileID: 1465060579931914804, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: width
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: height
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: roundManager
@@ -967,7 +990,11 @@ PrefabInstance:
       objectReference: {fileID: 506946980678677595, guid: 3c0df03290976754692b2a8cee7c6281, type: 3}
     - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: startingPositions.Array.data[1].x
-      value: 20
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465060579931914806, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
+      propertyPath: startingPositions.Array.data[1].y
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1465060579931914807, guid: e7dcae96d0fafa04289b52b316820da4, type: 3}
       propertyPath: m_RootOrder
