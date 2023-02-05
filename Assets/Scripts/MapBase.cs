@@ -16,6 +16,7 @@ public class MapBase : MonoBehaviour
 
     [SerializeField] public Material blueTeamOutline;
     [SerializeField] public Material redTeamOutline;
+    [SerializeField] public Material defaultOutline;
 
     private float noiseSpacing = 5f;
 
@@ -66,42 +67,35 @@ public class MapBase : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if((i == 0 && j == 0)|| (i == 1 && j == 0) || (i == 0 && j == 1) 
-                || (i == width - 1 && j == height - 1) || (i == width - 2 && j == height - 1) || (i == width - 1 && j == height - 2))
+                
+                float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i) / noiseSpacing, randomOffset + ((float)j) / noiseSpacing);
+                if (noiseTileType < 0.05f)
                 {
-                    tiles[i, j] = TileType.Grass;
+                    tiles[i, j] = TileType.CactusField;
+                }
+                else if (0.2f < noiseTileType && noiseTileType < 0.205f)
+                {
+                    tiles[i, j] = TileType.IvyField;
+                }
+                else if (0.4f < noiseTileType && noiseTileType < 0.405f)
+                {
+                    tiles[i, j] = TileType.CarnivorusField;
+                }
+                else if (noiseTileType > 0.7f)
+                {
+                    tiles[i, j] = TileType.Water;
                 }
                 else
                 {
-                    float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i) / noiseSpacing, randomOffset + ((float)j) / noiseSpacing);
-                    if (noiseTileType < 0.05f)
-                    {
-                        tiles[i, j] = TileType.CactusField;
-                    }
-                    else if (0.2f < noiseTileType && noiseTileType < 0.205f)
-                    {
-                        tiles[i, j] = TileType.IvyField;
-                    }
-                    else if (0.4f < noiseTileType && noiseTileType < 0.405f)
-                    {
-                        tiles[i, j] = TileType.CarnivorusField;
-                    }
-                    else if (noiseTileType > 0.7f)
-                    {
-                        tiles[i, j] = TileType.Water;
-                    }
-                    else
-                    {
-                        tiles[i, j] = TileType.Grass;
-                    }
+                    tiles[i, j] = TileType.Grass;
                 }
+                
                 tilesObject[i, j] = Instantiate(tilePrefabs[(int)tiles[i, j]]);
-                tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f);
+                tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f) ;
                 tilesObject[i, j].transform.parent = transform;
                 tilesInfos[i, j] = tilesObject[i, j].GetComponent<CaseInfo>();
                 tilesInfos[i, j].casePos = new Vector2Int(i, j);
                 tilesInfos[i, j].map = this;
-
             }
         }
 
@@ -130,13 +124,17 @@ public class MapBase : MonoBehaviour
     public void DestroyStructure(Structure structure)
     {
         Player structurePlayer = structure.player;
-
+        structure.player.playerStructures.Remove(structure);
+        tilesInfos[structure.position.x, structure.position.y].SetOutline(defaultOutline);
         structures[structure.position.x, structure.position.y] = null;
 
         if (structure != null)
         {
             Destroy(structure.gameObject);
         }
+
+        
+        
     }
 
     private Vector3 GetRealPosition(Vector2Int position)
@@ -248,7 +246,7 @@ public class MapBase : MonoBehaviour
 
                 foreach (Structure structure in roundManager.currentPlayer.playerStructures)
                 {
-                    List<Vector2Int> liste = CaseInfo.GetPossibleCases(structure.position, plantRootRadius, this);
+                    List<Vector2Int> liste = CaseInfo.GetPossibleCases(structure.position, plantRootRadius, this, false);
 
                     foreach (Vector2Int tilePos in liste)
                     {
@@ -384,8 +382,30 @@ public class MapBase : MonoBehaviour
 
 
 
-    private void DestroyUnlinkedStructures()
+    public void DestroyUnlinkedStructures(Player player)
     {
-        
+        List<Vector2Int> toKeep = CaseInfo.GetLinkedCases(startingPositions[player.playerId], 100, this, player);
+
+        bool[,] toKeepCases = new bool[width, height];
+
+        foreach(Vector2Int position in toKeep)
+        {
+            toKeepCases[position.x, position.y] = true;
+        }
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (!toKeepCases[i, j])
+                {
+                    if(structures[i, j] != null && structures[i, j].player == player)
+                    {
+                        DestroyStructure(structures[i, j]);
+                    }
+                    
+                }
+            }
+        }
     }
 }
