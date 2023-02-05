@@ -7,7 +7,7 @@ public class Pousse : Structure
     Pousse()
     {
         productionStats = new int[5] { 0, 0, 0, 0, 0 };
-        pvStats = new int[5] { 10000, 10000, 10000, 10000, 10000};
+        pvStats = new int[5] { 50, 50, 50, 50, 50 };
         dommageStats = new int[5] { 0, 0, 0, 0, 0 };
     }
     public override void ProduceRessource(Player player)
