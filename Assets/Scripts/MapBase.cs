@@ -25,9 +25,10 @@ public class MapBase : MonoBehaviour
     {
         Grass = 0,
         Water = 1,
-        CarnivorusField = 2,
-        IvyField = 3,
-        CactusField = 4
+        SunflowerField = 2,
+        CarnivorusField = 3,
+        IvyField = 4,
+        CactusField = 5
     }
 
     public enum StructureType : int
@@ -80,6 +81,10 @@ public class MapBase : MonoBehaviour
                 else if (0.4f < noiseTileType && noiseTileType < 0.405f)
                 {
                     tiles[i, j] = TileType.CarnivorusField;
+                }
+                else if (0.5f < noiseTileType && noiseTileType < 0.505f)
+                {
+                    tiles[i, j] = TileType.SunflowerField;
                 }
                 else if (noiseTileType > 0.7f)
                 {
