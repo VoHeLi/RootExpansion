@@ -5815,7 +5815,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 133bb20799ebc6745a6ecdbafc2652ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 240b6ce7333f7184bbd1279bf097a4a8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6125,7 +6125,7 @@ PrefabInstance:
       objectReference: {fileID: 145528665}
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: nbTurnMax
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: turnCount
