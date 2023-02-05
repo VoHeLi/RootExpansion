@@ -49,7 +49,7 @@ public class CaseInfo : MonoBehaviour
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 
 
-        List<Vector2Int> possibleCases = GetPossibleCases(casePos, plantRootRadius, map);
+        List<Vector2Int> possibleCases = GetPossibleCases(casePos, plantRootRadius, map, true);
 
         int plantCount = 0;
         foreach(Vector2Int otherPos in possibleCases){ 
@@ -139,7 +139,7 @@ public class CaseInfo : MonoBehaviour
 
 
 
-    public static List<Vector2Int> GetPossibleCases(Vector2Int start, int plantRootRadius, MapBase map)
+    public static List<Vector2Int> GetPossibleCases(Vector2Int start, int plantRootRadius, MapBase map, bool useRoot)
     {
         List<Vector2Int> accessibleCases = new();
 
@@ -176,7 +176,7 @@ public class CaseInfo : MonoBehaviour
                     {
                         if (map.structures[node.position.x, node.position.y] != null)
                         {
-                            if (map.structures[node.position.x, node.position.y].player == map.roundManager.currentPlayer || map.structures[node.position.x, node.position.y].type == MapBase.StructureType.Racine)
+                            if ((map.structures[node.position.x, node.position.y].player == map.roundManager.currentPlayer || (map.structures[node.position.x, node.position.y].type == MapBase.StructureType.Racine && useRoot)) && !(!useRoot && map.structures[node.position.x, node.position.y].type != MapBase.StructureType.Racine))
                             {
                                 queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
                             }
@@ -185,6 +185,58 @@ public class CaseInfo : MonoBehaviour
                         else
                         {
                             queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                        }
+                    }
+                }
+            }
+
+        }
+        return accessibleCases;
+    }
+
+
+
+    public static List<Vector2Int> GetLinkedCases(Vector2Int start, int plantRootRadius, MapBase map, Player player)
+    {
+        List<Vector2Int> accessibleCases = new();
+
+        bool[,] traveled = new bool[map.width, map.height];
+        Queue queue = new Queue();
+
+        MapBase.TileNode node = new MapBase.TileNode(null, start, 0);
+
+        queue.Enqueue(node);
+
+
+
+        while (queue.Count > 0)
+        {
+            node = (MapBase.TileNode)queue.Dequeue();
+
+            if (node.length > plantRootRadius)
+            {
+                break;
+            }
+
+            if (traveled[node.position.x, node.position.y]) continue;
+
+            traveled[node.position.x, node.position.y] = true;
+            accessibleCases.Add(node.position);
+
+            List<Vector2Int> neighbours = map.GetNeighbours(node.position);
+
+            foreach (Vector2Int neighbour in neighbours)
+            {
+                if ((neighbour.x >= 0) && (neighbour.x < map.height) && (neighbour.y >= 0) && (neighbour.y < map.width))
+                {
+                    if (map.tiles[neighbour.x, neighbour.y] == MapBase.TileType.Grass)
+                    {
+                        if (map.structures[node.position.x, node.position.y] != null)
+                        {
+                            if (map.structures[node.position.x, node.position.y].player == player)
+                            {
+                                queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                            }
                         }
                     }
                 }

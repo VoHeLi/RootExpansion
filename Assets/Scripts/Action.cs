@@ -56,15 +56,23 @@ public class Action
                 break;
             case ActionType.PlantCactus:
                 map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Cactus, map.roundManager.currentPlayer);
+                map.roundManager.currentPlayer.seeds[((int)MapBase.StructureType.Cactus) - 2]--;
+                map.roundManager.currentPlayer.ressources[0]--;
                 break;
             case ActionType.PlantCarnivore:
                 map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Carnivore, map.roundManager.currentPlayer);
+                map.roundManager.currentPlayer.seeds[((int)MapBase.StructureType.Carnivore) - 2]--;
+                map.roundManager.currentPlayer.ressources[0]--;
                 break;
             case ActionType.PlantLierre:
                 map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Lierre, map.roundManager.currentPlayer);
+                map.roundManager.currentPlayer.seeds[((int)MapBase.StructureType.Lierre) - 2]--;
+                map.roundManager.currentPlayer.ressources[0]--;
                 break;
             case ActionType.PlantTournesol:
                 map.ReplaceStructure(actionTile.casePos, MapBase.StructureType.Tournesol, map.roundManager.currentPlayer);
+                map.roundManager.currentPlayer.seeds[((int)MapBase.StructureType.Tournesol) - 2]--;
+                map.roundManager.currentPlayer.ressources[0]--;
                 break;
             case ActionType.Arroser:
                 map.UpgradeStructure(actionTile.casePos, map.roundManager.currentPlayer);
