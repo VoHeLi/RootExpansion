@@ -91,8 +91,10 @@ public class CaseInfo : MonoBehaviour
 
     public bool isCaseAttackable() 
     {
-        if(map.structures[casePos.x, casePos.y] == null) { return false;  }
+        if(map.structures[casePos.x, casePos.y] == null) { return false; }
+        if(map.structures[casePos.x, casePos.y].player != map.roundManager.currentPlayer) { return false; }
         int attackRange = map.structures[casePos.x, casePos.y].attackRange;
+        Player player = map.structures[casePos.x, casePos.y].player;
         int plantCount = 0;
         for (int iOffset = attackRange * -2; iOffset < attackRange * 2; iOffset++)
         {
@@ -103,10 +105,12 @@ public class CaseInfo : MonoBehaviour
                     // la case doit etre a une distance de la case
                     if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) <= attackRange)
                     {
-                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null && (map.structures[casePos.x + iOffset, casePos.y + jOffset].type != MapBase.StructureType.Racine) && (map.structures[casePos.x + iOffset, casePos.y + jOffset].player == map.roundManager.currentPlayer))
-                        {
-                            plantCount++;
-                        }
+                        if((map.structures[casePos.x + iOffset, casePos.y + jOffset] != null)&&(map.structures[casePos.x + iOffset, casePos.y + jOffset].player != player))
+                            if (map.structures[casePos.x + iOffset, casePos.y + jOffset].type != MapBase.StructureType.Racine)
+                            {
+                            
+                                plantCount++;
+                            }
 
                     }
                 }
