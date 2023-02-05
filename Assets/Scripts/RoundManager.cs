@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour
 
     public TextMeshProUGUI waterCount;
     public TMP_Dropdown dropdown;
+    public TextMeshProUGUI dropdownLabel;
 
     public TextMeshProUGUI turnCount;
     private int nbTurn = 1;
@@ -34,10 +35,13 @@ public class RoundManager : MonoBehaviour
         {
             players[i] = Instantiate(playerPrefab).GetComponent<Player>();
             players[i].map = map;
+
             players[i].waterCount = waterCount;
             players[i].dropdown = dropdown;
+            players[i].dropdownLabel = dropdownLabel;
+            players[i].tileSelector = tileSelector;
 
-            players[i].playerId = i;
+    players[i].playerId = i;
         }
         currentPlayer = players[0];
     }
