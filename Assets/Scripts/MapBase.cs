@@ -242,6 +242,7 @@ public class MapBase : MonoBehaviour
 
                     foreach (Vector2Int tilePos in liste)
                     {
+                        if (structures[tilePos.x, tilePos.y] != null) continue;
                         possible.Add(tilesInfos[tilePos.x, tilePos.y]);
                         added[tilePos.x, tilePos.y] = true;
                     }
