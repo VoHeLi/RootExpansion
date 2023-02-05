@@ -32,9 +32,7 @@ public class Carnivore : Structure
                     {
                         if ((map.structures[position.x + iOffset, position.y + jOffset] != null) && (map.structures[position.x + iOffset, position.y + jOffset].player != player))
                         {
-                            if (map.structures[position.x + iOffset, position.y + jOffset] != null
-                                && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
-                                && (map.structures[position.x + iOffset, position.y + jOffset].player == map.roundManager.currentPlayer))
+                            if ((map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine))
                             {
                                 Attackable.Add(map.structures[position.x + iOffset, position.y + jOffset]);
                             }
@@ -61,6 +59,6 @@ public class Carnivore : Structure
             }
         }
     }
-   
+
 }
 

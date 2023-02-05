@@ -32,10 +32,8 @@ public class Cactus : Structure
                     {
                         if ((map.structures[position.x + iOffset, position.y + jOffset] != null)&&(map.structures[position.x + iOffset, position.y + jOffset].player != player))
                         {
-                            Debug.Log("debug2");
                             if ((map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine))
                             {
-                                Debug.Log("debug3");
                                 Attackable.Add(map.structures[position.x + iOffset, position.y + jOffset]);
                             }
                         }
@@ -54,10 +52,8 @@ public class Cactus : Structure
 
         foreach (Structure plant in Attacked)
         {
-            Debug.Log("hello1");
             if (plant != null)
             {
-                Debug.Log("hello2");
                 Debug.Log(plant);
                 plant.hurt(dommageStats[niveau]);
             }
