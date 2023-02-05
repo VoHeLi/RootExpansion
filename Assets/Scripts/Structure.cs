@@ -26,9 +26,9 @@ public abstract class Structure : MonoBehaviour
         set
         {
             _niveau = value;
-            if(levelText != null)levelText.text = (_niveau+1).ToString();
+            if (levelText != null) levelText.text = (_niveau + 1).ToString();
 
-            if(value > 0)
+            if (value > 0)
             {
                 life += pvStats[value] - pvStats[value - 1];
             }
@@ -47,7 +47,7 @@ public abstract class Structure : MonoBehaviour
             if (lifeText != null) lifeText.text = _life.ToString() + " / " + pvStats[niveau];
             if (lifeBar != null) lifeBar.transform.localScale = new Vector3(_life / (float)pvStats[niveau], 1, 1);
 
-            if(_life <= 0)
+            if (_life <= 0)
             {
                 map.DestroyStructure(this);
             }
@@ -58,7 +58,48 @@ public abstract class Structure : MonoBehaviour
     public TMPro.TextMeshProUGUI levelText;
     public GameObject lifeBar;
 
-    public abstract void ProduceRessource(Player player); 
+    public abstract void ProduceRessource(Player player);
+
+    public void ProduceSeeds ( Player player ){
+        List<Vector2Int> possiblePos = new();
+
+        /// x-1,y
+        if (position.x - 1 >= 0) possiblePos.Add(new Vector2Int(position.x - 1, position.y));
+
+        if (position.x + 1 < map.width)
+        {
+            /// x+1,y
+            possiblePos.Add(new Vector2Int(position.x + 1, position.y));
+            /// x+1,y+1
+            if (position.y + 1 < map.height) { possiblePos.Add(new Vector2Int(position.x + 1, position.y + 1)); }
+            /// x+1,y-1
+            if (position.y - 1 >= 0) { possiblePos.Add(new Vector2Int(position.x + 1, position.y - 1)); }
+        }
+
+        /// x,y+1
+        if (position.y + 1 < map.height) possiblePos.Add(new Vector2Int(position.x, position.y + 1));
+
+        /// x,y-1
+        if (position.y - 1 >= 0) possiblePos.Add(new Vector2Int(position.x, position.y - 1));
+
+        foreach(Vector2Int posChamp in possiblePos)
+        {
+            switch (map.tiles[posChamp.x, posChamp.y])
+            {
+                case MapBase.TileType.CactusField:
+                    break;
+
+                case MapBase.TileType.CarnivorusField:
+                    break;
+
+                case MapBase.TileType.IvyField:
+                    break;
+
+                case MapBase.TileType.CactusField:
+                    break;
+            }
+        }
+    }
     public void Arroser(Player player)
     {
         if ((niveau<3)&&(player.ressources[0] >= Mathf.Pow(2, niveau + 1)))
