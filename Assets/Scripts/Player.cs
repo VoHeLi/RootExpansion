@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         endTurn = false;
+        this.seeds[0] = 3;
+        
         this.updateRessources();
 
         //TO REMOVE
@@ -88,6 +91,7 @@ public class Player : MonoBehaviour
         {
             dropdown.options.Add(new TMP_Dropdown.OptionData(plantList[i+2] + " : " + this.seeds[i]));
         }
+
         dropdownLabel.text = plantList[(int)tileSelector.planteID] + " : " + seeds[Mathf.Max(0,(int)tileSelector.planteID-2)];
     }
 }
