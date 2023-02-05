@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class RoundManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class RoundManager : MonoBehaviour
 
     public TextMeshProUGUI turnCount;
     private int nbTurn = 1;
-    private int nbTurnMax;
+    [SerializeField] private int nbTurnMax;
 
     public Player currentPlayer;
 
@@ -41,9 +42,12 @@ public class RoundManager : MonoBehaviour
             players[i].dropdownLabel = dropdownLabel;
             players[i].tileSelector = tileSelector;
 
-    players[i].playerId = i;
+            players[i].playerId = i;
         }
         currentPlayer = players[0];
+
+        players[0].playerName = "Player 1";
+        players[1].playerName = "Player 2";
     }
 
     void Start()
@@ -54,7 +58,7 @@ public class RoundManager : MonoBehaviour
 
     IEnumerator TurnPlay()
     {
-        while (true)
+        while (!EndGameConditions())
         {
             for (int k = 0; k < players.Length; k++)
             {
@@ -74,7 +78,7 @@ public class RoundManager : MonoBehaviour
 
                 for (int i = 0; i < actionCount; i++)
                 {
-                    turnCount.text = "Tour " + nbTurn.ToString() + " | Action " + (i+1).ToString() + " /3 | " + currentPlayer.getName();
+                    turnCount.text = "Tour " + nbTurn.ToString() + "/" + nbTurnMax.ToString() + " | Action " + (i+1).ToString() + "/3 | " + currentPlayer.getName();
                     yield return player.WaitForAction();
 
                     foreach(Player otherplayer in players)
@@ -86,6 +90,7 @@ public class RoundManager : MonoBehaviour
                     {
                         currentPlayer.endTurn = false;
                         tileSelector.ClearTileSelection();
+                        tileSelector.pendingAction = null;
                         break;
                     }
                 }
@@ -93,6 +98,12 @@ public class RoundManager : MonoBehaviour
             }
             nbTurn++;
         }
+
+        string winnerName = calculateWinner().playerName;
+
+        PlayerPrefs.SetString("winner", winnerName);
+
+        SceneManager.LoadScene("Victoire");
     }
 
 
@@ -103,20 +114,22 @@ public class RoundManager : MonoBehaviour
 
     public bool EndGameConditions()
     {
+        if (nbTurn < 3) return false;
+
         if (nbTurn > nbTurnMax){ return true; }
-        if (map.structures[0,0]==null || map.structures[map.width-1, map.height-1] == null) { return true; }
+        if (map.structures[map.startingPositions[0].x, map.startingPositions[0].y] ==null || map.structures[map.startingPositions[1].x, map.startingPositions[1].y] == null) { return true; }
         return false;
     }
 
     
     public Player calculateWinner()
     {
-        if(map.structures[0, 0] == null) { return map.structures[map.width - 1, map.height - 1].player; }
-        Player P1 = map.structures[0, 0].player;
+        if(map.structures[map.startingPositions[0].x, map.startingPositions[0].y] == null) { return map.structures[map.startingPositions[1].x, map.startingPositions[1].y].player; }
+        Player P1 = map.structures[map.startingPositions[0].x, map.startingPositions[0].y].player;
         float pointP1 = 0;
 
-        if (map.structures[map.width - 1, map.height - 1] == null) { return map.structures[0, 0].player; }
-        Player P2 = map.structures[0, 0].player;
+        if (map.structures[map.startingPositions[1].x, map.startingPositions[1].y] == null) { return map.structures[map.startingPositions[0].x, map.startingPositions[0].y].player; }
+        Player P2 = map.structures[map.startingPositions[1].x, map.startingPositions[1].y].player;
         float pointP2 = 0;
 
         if (nbTurn > nbTurnMax)

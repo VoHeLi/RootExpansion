@@ -18,6 +18,9 @@ public class MapBase : MonoBehaviour
     [SerializeField] public Material redTeamOutline;
     [SerializeField] public Material defaultOutline;
 
+    [SerializeField] public AudioSource arroser;
+    [SerializeField] public AudioSource attack;
+
     private float noiseSpacing = 5f;
 
 

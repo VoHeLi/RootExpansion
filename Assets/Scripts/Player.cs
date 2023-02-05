@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] public List<Structure> playerStructures;
 
-    private string playerName = "Plantar";
+    public string playerName = "Plantar";
     private Color playerColor = Color.white;
 
     private Action action = null;

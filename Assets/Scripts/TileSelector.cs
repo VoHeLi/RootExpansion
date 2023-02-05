@@ -18,7 +18,7 @@ public class TileSelector : MonoBehaviour
     private Vector2 _selectedPos;
     private CaseInfo _caseInfo;
 
-    private Action pendingAction;
+    public Action pendingAction;
 
     private PlayerInput playerInput;
     private RoundManager roundManager;
