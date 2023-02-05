@@ -12,6 +12,7 @@ public class MapBase : MonoBehaviour
     [SerializeField] public int onlyGrassMargin = 5;
     [SerializeField] private float space;
     [SerializeField] public RoundManager roundManager;
+    [SerializeField] public Vector2Int[] startingPositions;
 
     [SerializeField] public Material blueTeamOutline;
     [SerializeField] public Material redTeamOutline;
@@ -66,42 +67,58 @@ public class MapBase : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i)/noiseSpacing , randomOffset + ((float)j) / noiseSpacing);
-                if (noiseTileType < 0.005f)
-                {
-                    tiles[i, j] = TileType.CactusField;
-                }
-                else if (0.2f < noiseTileType && noiseTileType < 0.205f)
-                {
-                    tiles[i, j] = TileType.IvyField;
-                }
-                else if (0.4f < noiseTileType && noiseTileType < 0.405f)
-                {
-                    tiles[i, j] = TileType.CarnivorusField;
-                }
-                else if (0.6f < noiseTileType && noiseTileType < 0.605f)
-                {
-                    tiles[i, j] = TileType.SunFlowerField;
-                }
-                else if (noiseTileType > 0.7f)
-                {
-                    tiles[i, j] = TileType.Water;
-                }
-                else
+                if((i == 0 && j == 0)|| (i == 1 && j == 0) || (i == 0 && j == 1) 
+                || (i == width - 1 && j == height - 1) || (i == width - 2 && j == height - 1) || (i == width - 1 && j == height - 2))
                 {
                     tiles[i, j] = TileType.Grass;
                 }
+                else
+                {
+                    float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i) / noiseSpacing, randomOffset + ((float)j) / noiseSpacing);
+                    if (noiseTileType < 0.005f)
+                    {
+                        tiles[i, j] = TileType.CactusField;
+                    }
+                    else if (0.2f < noiseTileType && noiseTileType < 0.205f)
+                    {
+                        tiles[i, j] = TileType.IvyField;
+                    }
+                    else if (0.4f < noiseTileType && noiseTileType < 0.405f)
+                    {
+                        tiles[i, j] = TileType.CarnivorusField;
+                    }
+                    else if (0.6f < noiseTileType && noiseTileType < 0.605f)
+                    {
+                        tiles[i, j] = TileType.SunFlowerField;
+                    }
+                    else if (noiseTileType > 0.7f)
+                    {
+                        tiles[i, j] = TileType.Water;
+                    }
+                    else
+                    {
+                        tiles[i, j] = TileType.Grass;
+                    }
+                }
                 tilesObject[i, j] = Instantiate(tilePrefabs[(int)tiles[i, j]]);
-                tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f) ;
+                tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f);
                 tilesObject[i, j].transform.parent = transform;
                 tilesInfos[i, j] = tilesObject[i, j].GetComponent<CaseInfo>();
                 tilesInfos[i, j].casePos = new Vector2Int(i, j);
                 tilesInfos[i, j].map = this;
+
             }
         }
 
         ReplaceStructure(Vector2Int.zero, StructureType.Pousse, roundManager.players[0]);
         ReplaceStructure(Vector2Int.right * 20, StructureType.Pousse, roundManager.players[1]);
+    }
+
+    public void AttackFromStructure(Vector2Int casePos, Player currentPlayer)
+    {
+        Structure structure = structures[casePos.x, casePos.y];
+
+        structure.Action();
     }
 
     public void UpgradeStructure(Vector2Int casePos, Player currentPlayer)
@@ -370,5 +387,12 @@ public class MapBase : MonoBehaviour
             ReplaceStructure(node.position, StructureType.Racine, roundManager.currentPlayer);
             node = node.parent;
         }
+    }
+
+
+
+    private void DestroyUnlinkedStructures()
+    {
+        
     }
 }
