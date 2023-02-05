@@ -48,23 +48,14 @@ public class CaseInfo : MonoBehaviour
         int[] plantRootRadiusArray = new int[6] { 0, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 
+
+        List<Vector2Int> possibleCases = GetPossibleCases(casePos, plantRootRadius, map);
+
         int plantCount = 0;
-        for(int  iOffset = plantRootRadius * -2; iOffset < plantRootRadius * 2; iOffset++ )
-        {
-            for (int jOffset = plantRootRadius * -2; jOffset < plantRootRadius * 2; jOffset++)
+        foreach(Vector2Int otherPos in possibleCases){ 
+            if (map.structures[otherPos.x, otherPos.y] != null && (map.structures[otherPos.x, otherPos.y].type != MapBase.StructureType.Racine) && (map.structures[otherPos.x, otherPos.y].player == map.roundManager.currentPlayer))
             {
-                if((casePos.x + iOffset >= 0) && (casePos.x + iOffset < map.height) && (casePos.y + jOffset >= 0) && (casePos.y + jOffset < map.width))
-                {
-                    // la case doit etre a une distance de la case
-                    if (GetTileDistance(new Vector2Int(casePos.x + iOffset, casePos.y + jOffset)) <= plantRootRadius)
-                    {
-                        if (map.structures[casePos.x + iOffset, casePos.y + jOffset] != null && (map.structures[casePos.x + iOffset, casePos.y + jOffset].type != MapBase.StructureType.Racine) && (map.structures[casePos.x + iOffset, casePos.y + jOffset].player == map.roundManager.currentPlayer))
-                        {
-                            plantCount++;
-                        }
-                        
-                    }
-                }
+                plantCount++;
             }
         }
         if (plantCount <= 0) { return false; }
@@ -83,6 +74,8 @@ public class CaseInfo : MonoBehaviour
 
         return true;
     }
+
+
 
     public bool isCaseArrosable()
     {
@@ -142,5 +135,62 @@ public class CaseInfo : MonoBehaviour
         else
             x = Mathf.Max(0, x - (y) / 2);
         return x + y;
+    }
+
+
+
+    public static List<Vector2Int> GetPossibleCases(Vector2Int start, int plantRootRadius, MapBase map)
+    {
+        List<Vector2Int> accessibleCases = new();
+
+        bool[,] traveled = new bool[map.width, map.height];
+        Queue queue = new Queue();
+
+        MapBase.TileNode node = new MapBase.TileNode(null, start, 0);
+
+        queue.Enqueue(node);
+
+
+
+        while (queue.Count > 0)
+        {
+            node = (MapBase.TileNode)queue.Dequeue();
+
+            if (node.length > plantRootRadius)
+            {
+                break;
+            }
+
+            if (traveled[node.position.x, node.position.y]) continue;
+
+            traveled[node.position.x, node.position.y] = true;
+            accessibleCases.Add(node.position);
+
+            List<Vector2Int> neighbours = map.GetNeighbours(node.position);
+
+            foreach (Vector2Int neighbour in neighbours)
+            {
+                if ((neighbour.x >= 0) && (neighbour.x < map.height) && (neighbour.y >= 0) && (neighbour.y < map.width))
+                {
+                    if (map.tiles[neighbour.x, neighbour.y] == MapBase.TileType.Grass)
+                    {
+                        if (map.structures[node.position.x, node.position.y] != null)
+                        {
+                            if (map.structures[node.position.x, node.position.y].player == map.roundManager.currentPlayer || map.structures[node.position.x, node.position.y].type == MapBase.StructureType.Racine)
+                            {
+                                queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                            }
+                        }
+
+                        else
+                        {
+                            queue.Enqueue(new MapBase.TileNode(node, neighbour, node.length + 1));
+                        }
+                    }
+                }
+            }
+
+        }
+        return accessibleCases;
     }
 }
