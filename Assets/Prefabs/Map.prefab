@@ -47,6 +47,7 @@ MonoBehaviour:
   tilePrefabs:
   - {fileID: 3641433491633284447, guid: 174a9582cac361340bb1834f38564d49, type: 3}
   - {fileID: 3641433491633284447, guid: 5cf7c528664de9e47ba1a612c1a5e1b8, type: 3}
+  - {fileID: 3641433491633284447, guid: b51a8b49546caaa4485d6751fb4dfb61, type: 3}
   - {fileID: 3641433491633284447, guid: 62c91813342733f43bb58e98016c2a23, type: 3}
   - {fileID: 3641433491633284447, guid: fec685bc9c3af374794a397c7d1377b7, type: 3}
   - {fileID: 3641433491633284447, guid: 84f90e0f2a1c0c941a1dc22f6885105b, type: 3}
@@ -58,5 +59,7 @@ MonoBehaviour:
   onlyGrassMargin: 5
   space: 2
   roundManager: {fileID: 0}
+  startingPositions: []
   blueTeamOutline: {fileID: 0}
   redTeamOutline: {fileID: 0}
+  defaultOutline: {fileID: 0}
