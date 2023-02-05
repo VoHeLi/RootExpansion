@@ -36,10 +36,12 @@ public class Player : MonoBehaviour
         this.updateRessources();
 
         //TO REMOVE
-        seeds[0] = 10;
+        seeds[0] = 3;
+        /*
         seeds[1] = 10;
         seeds[2] = 10;
         seeds[3] = 10;
+        */
     }
 
     public IEnumerator WaitForAction()
