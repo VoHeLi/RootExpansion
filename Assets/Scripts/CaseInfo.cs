@@ -45,7 +45,7 @@ public class CaseInfo : MonoBehaviour
     {
         if (map.structures[casePos.x, casePos.y] != null) return false; 
 
-        int[] plantRootRadiusArray = new int[6] { 3, 0, 2, 3, 4, 2};
+        int[] plantRootRadiusArray = new int[6] { 0, 0, 2, 3, 4, 2};
         int plantRootRadius = plantRootRadiusArray[((int)planteID)];
 
         int plantCount = 0;
