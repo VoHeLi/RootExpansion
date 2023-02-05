@@ -81,6 +81,8 @@ public abstract class Structure : MonoBehaviour
     {
         List<Structure> Closests = new();
         int min = 100;
+
+        Debug.Log(min);
         foreach (Structure structure in structures)
         {
             int dist = GetTileDistance(structure.position);
@@ -89,14 +91,21 @@ public abstract class Structure : MonoBehaviour
                 min = dist;
                 Closests.Clear();
                 Closests.Add(structure);
+                Debug.Log("ljtyhdrtegrdkgi");
             }
             else if (dist == min)
             {
                 Closests.Add(structure);
             }
         }
-        if (Closests.Count == 0) { return null; }
-        return Closests[Random.Range(0, Closests.Count-1)];
+        if (Closests.Count == 0) 
+        {
+            Debug.Log("le probleme est ici");
+            return null;
+        }
+        int rand = Random.Range(0, Closests.Count - 1);
+        Debug.Log(rand);
+        return Closests[rand];
 
     }
     
@@ -110,10 +119,10 @@ public abstract class Structure : MonoBehaviour
     public void Start()
     {
         map = GameObject.Find("Map").GetComponent<MapBase>();
+
         if(pvStats != null && pvStats.Length > 0)
         {
             life = pvStats[0];
         }
-        
     }
 }

@@ -17,6 +17,7 @@ public class Lierre : Structure
     }
 
 
+    [ContextMenu("attaque")]
     public override void Action()
     {
         List<Structure> Attackable = new();
@@ -30,7 +31,7 @@ public class Lierre : Structure
                     // la case doit etre a une distance de la case
                     if (GetTileDistance(new Vector2Int(position.x + iOffset, position.y + jOffset)) <= attackRange)
                     {
-                        if (map.structures[position.x + iOffset, position.y + jOffset].player != player)
+                        if ((map.structures[position.x + iOffset, position.y + jOffset] != null) && (map.structures[position.x + iOffset, position.y + jOffset].player != player))
                         {
                             if (map.structures[position.x + iOffset, position.y + jOffset] != null
                                 && (map.structures[position.x + iOffset, position.y + jOffset].type != MapBase.StructureType.Racine)
@@ -54,7 +55,11 @@ public class Lierre : Structure
 
         foreach (Structure plant in Attacked)
         {
-            plant.hurt(dommageStats[niveau]);
+            if (plant != null)
+            {
+                Debug.Log(plant);
+                plant.hurt(dommageStats[niveau]);
+            }
         }
     }
 }
