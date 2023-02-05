@@ -42,7 +42,7 @@ public class MapBase : MonoBehaviour
     public TileType[,] tiles;
 
     private GameObject[,] tilesObject;
-    private CaseInfo[,] tilesInfos;
+    public CaseInfo[,] tilesInfos;
 
     public Structure[,] structures;
 
@@ -253,7 +253,11 @@ public class MapBase : MonoBehaviour
                 {
                     for (int j = 0; j < height; j++)
                     {
-                        if(!added[i,j]) notPossible.Add(tilesInfos[i, j]);
+                        if (!added[i, j])
+                        {
+                            notPossible.Add(tilesInfos[i, j]);
+                        }
+                        
                     }
                 }
 
