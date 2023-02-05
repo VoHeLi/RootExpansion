@@ -14,6 +14,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private MapBase map;
     [SerializeField] private GameObject[] cameras;
+    [SerializeField] private TileSelector tileSelector;
 
     public Player[] players;
 
@@ -33,6 +34,7 @@ public class RoundManager : MonoBehaviour
             players[i] = Instantiate(playerPrefab).GetComponent<Player>();
             players[i].map = map;
             players[i].waterCount = waterCount;
+            players[i].playerId = i;
         }
         currentPlayer = players[0];
     }
@@ -65,9 +67,15 @@ public class RoundManager : MonoBehaviour
                     turnCount.text = "Tour " + nbTurn.ToString() + " | Action " + (i+1).ToString() + " /3 | " + currentPlayer.getName();
                     yield return player.WaitForAction();
 
+                    foreach(Player otherplayer in players)
+                    {
+                        map.DestroyUnlinkedStructures(otherplayer);
+                    }
+
                     if (currentPlayer.endTurn)
                     {
                         currentPlayer.endTurn = false;
+                        tileSelector.ClearTileSelection();
                         break;
                     }
                 }

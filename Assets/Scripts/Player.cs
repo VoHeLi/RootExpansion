@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private Action action = null;
     public MapBase map;
     public int[] seeds = new int[4];
+    public int playerId = 0;
 
     public TextMeshProUGUI waterCount;
 
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         
 
         //Wait for action
-        while(action == null)
+        while (action == null)
         {
             if (endTurn)
             {
@@ -50,6 +51,8 @@ public class Player : MonoBehaviour
         action.Execute(map);
         
         action = null;
+
+        
     }
 
     
