@@ -832,17 +832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2058102720 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3942256415052930079, guid: e94346d6f777680458b1cc6472835e86, type: 3}
-  m_PrefabInstance: {fileID: 1272342671}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &768729923830085812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,11 +910,7 @@ PrefabInstance:
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: dropdownLabel
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 2058102720}
-=======
       objectReference: {fileID: 622974802}
->>>>>>> 30827916530deaf3a3722dc199e33e74eac08687
     - target: {fileID: 768729922035289772, guid: 6b2ed45d1238f224898d417953773544, type: 3}
       propertyPath: cameras.Array.data[0]
       value: 
