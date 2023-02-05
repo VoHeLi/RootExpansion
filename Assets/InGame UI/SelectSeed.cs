@@ -6,14 +6,9 @@ using TMPro;
 public class SelectSeed : MonoBehaviour
 {
     public TileSelector tileSelector;
-    public TMP_Dropdown startDropdown;
+    public TMP_Dropdown dropdown;
 
-    void start()
-    {
-        OnValueChange(startDropdown);
-    }
-
-    public void OnValueChange(TMP_Dropdown dropdown)
+    public void OnValueChange()
     {
         switch (dropdown.value)
         {

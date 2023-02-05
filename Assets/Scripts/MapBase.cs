@@ -25,10 +25,9 @@ public class MapBase : MonoBehaviour
     {
         Grass = 0,
         Water = 1,
-        SunFlowerField = 2,
-        CarnivorusField = 3,
-        IvyField = 4,
-        CactusField = 5
+        CarnivorusField = 2,
+        IvyField = 3,
+        CactusField = 4
     }
 
     public enum StructureType : int
@@ -68,8 +67,9 @@ public class MapBase : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i)/noiseSpacing , randomOffset + ((float)j) / noiseSpacing);
-                if (noiseTileType < 0.005f)
+                
+                float noiseTileType = Mathf.PerlinNoise(randomOffset + ((float)i) / noiseSpacing, randomOffset + ((float)j) / noiseSpacing);
+                if (noiseTileType < 0.05f)
                 {
                     tiles[i, j] = TileType.CactusField;
                 }
@@ -81,10 +81,6 @@ public class MapBase : MonoBehaviour
                 {
                     tiles[i, j] = TileType.CarnivorusField;
                 }
-                else if (0.6f < noiseTileType && noiseTileType < 0.605f)
-                {
-                    tiles[i, j] = TileType.SunFlowerField;
-                }
                 else if (noiseTileType > 0.7f)
                 {
                     tiles[i, j] = TileType.Water;
@@ -93,6 +89,7 @@ public class MapBase : MonoBehaviour
                 {
                     tiles[i, j] = TileType.Grass;
                 }
+                
                 tilesObject[i, j] = Instantiate(tilePrefabs[(int)tiles[i, j]]);
                 tilesObject[i, j].transform.position = offset + new Vector3(i * space + space / 2 * (j % 2), 0, j * space * 5.0f / 6.0f) ;
                 tilesObject[i, j].transform.parent = transform;
