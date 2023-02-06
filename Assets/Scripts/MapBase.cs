@@ -20,6 +20,7 @@ public class MapBase : MonoBehaviour
 
     [SerializeField] public AudioSource arroser;
     [SerializeField] public AudioSource attack;
+    [SerializeField] public AudioSource attackvraiment;
 
     private float noiseSpacing = 5f;
 

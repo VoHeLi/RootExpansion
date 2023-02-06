@@ -78,7 +78,7 @@ public class RoundManager : MonoBehaviour
 
                 for (int i = 0; i < actionCount; i++)
                 {
-                    turnCount.text = "Tour " + nbTurn.ToString() + "/" + nbTurnMax.ToString() + " | Action " + (i+1).ToString() + "/3 | " + currentPlayer.getName();
+                    turnCount.text = "Turnd " + nbTurn.ToString() + "/" + nbTurnMax.ToString() + " | Action " + (i+1).ToString() + "/3 | " + currentPlayer.getName();
                     yield return player.WaitForAction();
 
                     foreach(Player otherplayer in players)
@@ -114,7 +114,7 @@ public class RoundManager : MonoBehaviour
 
     public bool EndGameConditions()
     {
-        if (nbTurn < 3) return false;
+        if (nbTurn < 2) return false;
 
         if (nbTurn > nbTurnMax){ return true; }
         if (map.structures[map.startingPositions[0].x, map.startingPositions[0].y] ==null || map.structures[map.startingPositions[1].x, map.startingPositions[1].y] == null) { return true; }

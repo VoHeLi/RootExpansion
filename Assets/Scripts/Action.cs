@@ -85,7 +85,7 @@ public class Action
                 break;
             case ActionType.Attack:
                 map.AttackFromStructure(actionTile.casePos, map.roundManager.currentPlayer);
-                
+                map.attackvraiment.Play();
                 break;
         }
     }
